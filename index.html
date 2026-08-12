@@ -1,1503 +1,1153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammad Sufyan - Electrical Engineering Portfolio</title>
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- FontAwesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts - Professional Typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary-dark: #0a0d1a;
-            --secondary-dark: #0f1428;
-            --tertiary-dark: #1a2340;
-            --accent-cyan: #00d9ff;
-            --accent-blue: #0099ff;
-            --accent-purple: #6366f1;
-            --text-primary: #ffffff;
-            --text-secondary: #c5cae9;
-            --text-dark: #1a1f2e;
-            --border-color: #1e3a5f;
-            --card-bg-dark: rgba(10, 13, 26, 0.8);
-            --glass-bg: rgba(15, 20, 40, 0.7);
-            --shadow-glow: rgba(0, 217, 255, 0.15);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Sufyan | Electrical Engineering — PCB Design, RF Hardware & Robotics</title>
+<meta name="description" content="Portfolio of Muhammad Sufyan, B.S. Electrical Engineering student at PIEAS (CGPA 3.99/4.00) specializing in PCB design, RF & wireless hardware, embedded systems, power electronics, and ROS 2 robotics.">
+<meta name="keywords" content="Muhammad Sufyan, Electrical Engineering, PIEAS, PCB Design, KiCad, Altium, Embedded Systems, RF Hardware, ROS 2, Robotics, Power Electronics, STM32, ESP32">
+<meta name="author" content="Muhammad Sufyan">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Muhammad Sufyan | Electrical Engineering — PCB Design, RF Hardware & Robotics">
+<meta property="og:description" content="B.S. Electrical Engineering student at PIEAS building PCBs, RF hardware, embedded systems, and robotics. Concept → Schematic → Simulation → PCB → Firmware → Testing.">
+<meta property="og:site_name" content="Muhammad Sufyan — Portfolio">
 
-        html {
-            scroll-behavior: smooth;
-        }
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Muhammad Sufyan | Electrical Engineering Portfolio">
+<meta name="twitter:description" content="PCB Design • RF Hardware • Embedded Systems • Robotics • Power Electronics">
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--primary-dark);
-            color: var(--text-secondary);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow-x: hidden;
-            letter-spacing: 0.4px;
-        }
+<!-- Favicon (inline chip glyph) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230a0d1a'/%3E%3Crect x='30' y='30' width='40' height='40' rx='4' fill='none' stroke='%2300d9ff' stroke-width='5'/%3E%3Cpath d='M50 10v20M50 70v20M10 50h20M70 50h20M22 22l14 14M64 64l14 14M78 22L64 36M36 64L22 78' stroke='%2300d9ff' stroke-width='5' stroke-linecap='round'/%3E%3Ccircle cx='50' cy='50' r='6' fill='%2300d9ff'/%3E%3C/svg%3E">
 
-        /* LIGHT MODE - PROFESSIONAL */
-        body.light-mode {
-            --primary-dark: #f8f9fb;
-            --secondary-dark: #ffffff;
-            --tertiary-dark: #f0f3f8;
-            --accent-cyan: #0066cc;
-            --accent-blue: #0052a3;
-            --accent-purple: #5e4aba;
-            --text-primary: #1a1f2e;
-            --text-secondary: #495057;
-            --border-color: #d4d8e8;
-            --card-bg-dark: rgba(255, 255, 255, 0.95);
-            --glass-bg: rgba(248, 249, 251, 0.9);
-            --shadow-glow: rgba(0, 102, 204, 0.1);
-        }
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
 
-        /* ANIMATIONS & EFFECTS */
-        @keyframes gradientFlow {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
+<!-- FontAwesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        @keyframes circuitPulse {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.8; }
-        }
+<!-- Fonts: Syne (display) + Inter (body) + JetBrains Mono (terminal/data readouts) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Syne:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        @keyframes nodeGlow {
-            0%, 100% { box-shadow: 0 0 10px var(--accent-cyan); }
-            50% { box-shadow: 0 0 25px var(--accent-cyan); }
-        }
+<style>
+:root{
+  --primary-dark:#080b16;
+  --secondary-dark:#0d1226;
+  --tertiary-dark:#141b38;
+  --accent-cyan:#00d9ff;
+  --accent-blue:#0099ff;
+  --accent-violet:#8b6bff;
+  --accent-green:#00e6a8;
+  --text-primary:#ffffff;
+  --text-secondary:#aab2d4;
+  --text-muted:#7480a8;
+  --border-color:#1e2a4a;
+  --card-bg-dark:rgba(10,14,28,0.78);
+  --glass-bg:rgba(13,18,38,0.65);
+  --shadow-glow:rgba(0,217,255,0.16);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background-color:var(--primary-dark);
+  color:var(--text-secondary);
+  transition:background-color .4s ease,color .4s ease;
+  overflow-x:hidden;
+}
+body.light-mode{
+  --primary-dark:#f6f7fb;
+  --secondary-dark:#ffffff;
+  --tertiary-dark:#eef1f8;
+  --accent-cyan:#0072c6;
+  --accent-blue:#0057a3;
+  --accent-violet:#5b3fd6;
+  --accent-green:#049c76;
+  --text-primary:#0f1424;
+  --text-secondary:#3d4665;
+  --text-muted:#6b7494;
+  --border-color:#d9deee;
+  --card-bg-dark:rgba(255,255,255,0.9);
+  --glass-bg:rgba(246,247,251,0.85);
+  --shadow-glow:rgba(0,114,198,0.12);
+}
+h1,h2,h3,h4{font-family:'Syne',sans-serif;font-weight:700;letter-spacing:-0.5px;color:var(--text-primary);}
+h1{font-size:3.4rem;line-height:1.08;}
+h2{font-size:2.3rem;line-height:1.2;}
+h3{font-size:1.3rem;line-height:1.35;}
+.mono{font-family:'JetBrains Mono',monospace;}
+.text-primary-c{color:var(--text-primary);}
 
-        @keyframes fillBar {
-            from { width: 0%; }
-            to { width: var(--skill-level); }
-        }
+/* ===== Background layers ===== */
+body::before{
+  content:'';position:fixed;inset:0;
+  background:
+    radial-gradient(circle at 15% 20%,rgba(0,217,255,0.07) 0%,transparent 45%),
+    radial-gradient(circle at 85% 75%,rgba(139,107,255,0.07) 0%,transparent 45%),
+    linear-gradient(160deg,var(--primary-dark) 0%,var(--secondary-dark) 55%,var(--primary-dark) 100%);
+  z-index:-3;
+}
+.pcb-grid{
+  content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(0,217,255,0.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,217,255,0.045) 1px,transparent 1px);
+  background-size:44px 44px;
+  mask-image:radial-gradient(circle at 50% 20%,black,transparent 80%);
+}
+body.light-mode .pcb-grid{
+  background-image:
+    linear-gradient(rgba(0,90,160,0.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,90,160,0.05) 1px,transparent 1px);
+}
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+/* ===== Animations ===== */
+@keyframes gradientFlow{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+@keyframes nodeGlow{0%,100%{box-shadow:0 0 8px var(--accent-cyan);}50%{box-shadow:0 0 22px var(--accent-cyan);}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(36px);}to{opacity:1;transform:translateY(0);}}
+@keyframes dashFlow{to{stroke-dashoffset:-400;}}
+@keyframes blink{0%,49%{opacity:1;}50%,100%{opacity:0;}}
+@keyframes floatY{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+@keyframes pulseDot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(1.4);}}
 
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);}
+.reveal.is-visible{opacity:1;transform:translateY(0);}
 
-        .fade-in {
-            animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-            opacity: 0;
-        }
+/* ===== Glass & cards ===== */
+.glass{background:var(--glass-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(0,217,255,0.12);}
+.card-glow{position:relative;background:var(--card-bg-dark);border:1px solid var(--border-color);border-radius:16px;transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s ease,border-color .35s ease;}
+.card-glow:hover{transform:translateY(-8px);box-shadow:0 22px 46px var(--shadow-glow);border-color:rgba(0,217,255,0.35);}
+.icon-tile{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,var(--accent-cyan),var(--accent-blue));display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 
-        /* BACKGROUND & LAYOUT */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--tertiary-dark) 50%, var(--secondary-dark) 100%);
-            background-size: 200% 200%;
-            animation: gradientFlow 20s ease infinite;
-            z-index: -2;
-        }
+.glow-text{background:linear-gradient(135deg,var(--accent-cyan) 0%,var(--accent-violet) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(0, 217, 255, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(0, 153, 255, 0.05) 0%, transparent 50%);
-            z-index: -1;
-            pointer-events: none;
-        }
+/* ===== Eyebrow / register labels (signature motif) ===== */
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:.78rem;font-weight:600;letter-spacing:2px;
+  color:var(--accent-cyan);text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;
+  padding:5px 14px;border:1px solid rgba(0,217,255,0.3);border-radius:999px;background:rgba(0,217,255,0.06);
+}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent-green);animation:pulseDot 2s ease-in-out infinite;}
+.section-head{margin-bottom:3.2rem;}
+.section-head h2{margin-top:14px;}
 
-        /* TYPOGRAPHY */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Syne', sans-serif;
-            font-weight: 700;
-            letter-spacing: -0.8px;
-        }
+/* ===== Buttons ===== */
+.btn-primary{background:linear-gradient(135deg,var(--accent-cyan),var(--accent-blue));color:#04101c;font-weight:700;padding:13px 30px;border-radius:10px;border:none;cursor:pointer;transition:.3s cubic-bezier(.34,1.56,.64,1);box-shadow:0 10px 28px var(--shadow-glow);font-size:.92rem;}
+.btn-primary:hover{transform:translateY(-4px);box-shadow:0 18px 40px var(--shadow-glow);}
+.btn-secondary{border:1.5px solid var(--accent-cyan);color:var(--accent-cyan);background:transparent;font-weight:700;padding:11px 28px;border-radius:10px;cursor:pointer;transition:.3s cubic-bezier(.34,1.56,.64,1);font-size:.92rem;}
+.btn-secondary:hover{background:rgba(0,217,255,0.1);transform:translateY(-4px);}
+.btn-ghost{border:1.5px solid var(--border-color);color:var(--text-secondary);background:transparent;font-weight:600;padding:9px 18px;border-radius:8px;cursor:pointer;transition:.25s ease;font-size:.82rem;}
+.btn-ghost:hover{border-color:var(--accent-cyan);color:var(--accent-cyan);}
+.btn-ghost.active{border-color:var(--accent-cyan);color:var(--primary-dark);background:var(--accent-cyan);}
 
-        h1 { font-size: 3.5rem; line-height: 1.1; }
-        h2 { font-size: 2.5rem; line-height: 1.2; }
-        h3 { font-size: 1.5rem; line-height: 1.4; }
+/* ===== Badges/tags ===== */
+.badge{display:inline-block;padding:6px 14px;border-radius:8px;font-size:.78rem;font-weight:600;background:rgba(0,217,255,0.1);border:1px solid rgba(0,217,255,0.35);color:var(--accent-cyan);margin:4px 6px 4px 0;letter-spacing:.3px;}
+.badge-violet{background:rgba(139,107,255,0.1);border-color:rgba(139,107,255,0.4);color:var(--accent-violet);}
+.badge-green{background:rgba(0,230,168,0.1);border-color:rgba(0,230,168,0.4);color:var(--accent-green);}
 
-        /* GLASSMORPHISM & CARDS */
-        .glass {
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(0, 217, 255, 0.12);
-            position: relative;
-        }
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar{width:10px;}
+::-webkit-scrollbar-track{background:var(--primary-dark);}
+::-webkit-scrollbar-thumb{background:var(--accent-cyan);border-radius:6px;}
 
-        .card-glow {
-            position: relative;
-            background: var(--card-bg-dark);
-            border: 1px solid var(--border-color);
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
+/* ===== Timeline ===== */
+.timeline{position:relative;padding:10px 0;}
+.timeline::before{content:'';position:absolute;left:24px;top:0;width:2px;height:100%;background:linear-gradient(180deg,var(--accent-cyan),var(--accent-violet));}
+@media(min-width:900px){.timeline::before{left:50%;transform:translateX(-50%);}}
+.timeline-item{position:relative;margin-bottom:52px;padding-left:64px;}
+@media(min-width:900px){.timeline-item{padding-left:0;}}
+.timeline-item::before{content:'';position:absolute;left:24px;top:6px;width:14px;height:14px;background:var(--secondary-dark);border:3px solid var(--accent-cyan);border-radius:50%;transform:translateX(-50%);z-index:5;animation:nodeGlow 2.6s ease-in-out infinite;}
+@media(min-width:900px){.timeline-item::before{left:50%;}}
+.timeline-content{width:100%;}
+@media(min-width:900px){
+  .timeline-content{width:44%;}
+  .timeline-item:nth-child(odd) .timeline-content{margin-right:auto;text-align:right;}
+  .timeline-item:nth-child(even) .timeline-content{margin-left:auto;}
+}
 
-        body.light-mode .card-glow {
-            border: 1px solid rgba(0, 102, 204, 0.15);
-        }
+/* ===== Inputs ===== */
+.glow-input{background:var(--card-bg-dark);border:1.5px solid var(--border-color);color:var(--text-primary);padding:13px 16px;border-radius:10px;transition:.3s ease;font-size:.93rem;width:100%;}
+.glow-input::placeholder{color:var(--text-muted);}
+.glow-input:focus{outline:none;border-color:var(--accent-cyan);box-shadow:0 0 0 3px rgba(0,217,255,0.15);}
 
-        .card-glow::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, transparent 100%);
-            border-radius: inherit;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
+/* ===== Typewriter ===== */
+.typewriter-cursor{display:inline-block;width:3px;background:var(--accent-cyan);margin-left:3px;animation:blink 1s step-start infinite;}
 
-        .card-glow:hover::before {
-            opacity: 1;
-        }
+/* ===== Hero PCB trace visual ===== */
+.hero-trace{position:absolute;inset:-40px;pointer-events:none;}
+.hero-trace path{fill:none;stroke:url(#traceGrad);stroke-width:1.6;stroke-dasharray:6 10;animation:dashFlow 6s linear infinite;opacity:.55;}
+.hero-node{animation:pulseDot 2.4s ease-in-out infinite;}
+.photo-frame{animation:floatY 6s ease-in-out infinite;}
 
-        .card-glow:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 25px 50px var(--shadow-glow);
-            border-color: rgba(0, 217, 255, 0.3);
-        }
+/* ===== Nav active link ===== */
+nav a.active-link{color:var(--accent-cyan)!important;}
 
-        /* GLOW TEXT */
-        .glow-text {
-            background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-blue) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 800;
-        }
+/* ===== Certificate card disabled state ===== */
+.cert-btn[data-disabled="true"]{opacity:.5;cursor:not-allowed;}
 
-        /* BUTTONS */
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
-            color: var(--primary-dark);
-            font-weight: 700;
-            padding: 13px 34px;
-            border-radius: 10px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 10px 30px var(--shadow-glow);
-            letter-spacing: 0.5px;
-            font-size: 0.95rem;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 50px var(--shadow-glow);
-        }
-
-        .btn-secondary {
-            border: 2px solid var(--accent-cyan);
-            color: var(--accent-cyan);
-            background: transparent;
-            font-weight: 700;
-            padding: 11px 32px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            letter-spacing: 0.5px;
-            font-size: 0.95rem;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(0, 217, 255, 0.1);
-            transform: translateY(-4px);
-        }
-
-        /* BADGES */
-        .badge {
-            display: inline-block;
-            padding: 8px 18px;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            background: rgba(0, 217, 255, 0.12);
-            border: 1.5px solid var(--accent-cyan);
-            color: var(--accent-cyan);
-            margin: 6px 8px 6px 0;
-            animation: nodeGlow 3s ease-in-out infinite;
-            transition: all 0.3s ease;
-            cursor: default;
-            letter-spacing: 0.4px;
-        }
-
-        .badge:hover {
-            background: rgba(0, 217, 255, 0.25);
-            transform: scale(1.08);
-        }
-
-        body.light-mode .badge {
-            background: rgba(0, 102, 204, 0.12);
-            border-color: var(--accent-blue);
-            color: var(--accent-blue);
-        }
-
-        /* SCROLLBAR */
-        ::-webkit-scrollbar {
-            width: 12px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--primary-dark);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent-cyan);
-            border-radius: 6px;
-            transition: all 0.3s ease;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-blue);
-        }
-
-        /* TIMELINE */
-        .timeline {
-            position: relative;
-            padding: 20px 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--accent-cyan), var(--accent-blue));
-            box-shadow: 0 0 20px var(--accent-cyan);
-        }
-
-        .timeline-item {
-            margin-bottom: 60px;
-            position: relative;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 18px;
-            height: 18px;
-            background: var(--secondary-dark);
-            border: 3px solid var(--accent-cyan);
-            border-radius: 50%;
-            top: 0;
-            box-shadow: 0 0 25px var(--accent-cyan);
-            z-index: 10;
-            animation: nodeGlow 2.5s ease-in-out infinite;
-        }
-
-        .timeline-content {
-            width: 45%;
-            padding: 24px;
-        }
-
-        .timeline-item:nth-child(odd) .timeline-content {
-            margin-right: auto;
-            text-align: right;
-        }
-
-        .timeline-item:nth-child(even) .timeline-content {
-            margin-left: auto;
-        }
-
-        /* INPUTS & FORMS */
-        .glow-input {
-            background: var(--card-bg-dark);
-            border: 1.5px solid var(--border-color);
-            color: var(--text-primary);
-            padding: 13px 18px;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
-            letter-spacing: 0.3px;
-        }
-
-        .glow-input::placeholder {
-            color: var(--text-secondary);
-        }
-
-        .glow-input:focus {
-            outline: none;
-            border-color: var(--accent-cyan);
-            box-shadow: 0 0 20px var(--accent-cyan), inset 0 0 10px rgba(0, 217, 255, 0.08);
-            background: var(--glass-bg);
-        }
-
-        /* SKILL BAR */
-        .skill-bar {
-            animation: fillBar 2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
-            box-shadow: 0 0 15px var(--accent-cyan);
-            border-radius: 10px;
-            height: 100%;
-        }
-
-        /* NAVBAR */
-        nav {
-            z-index: 1000;
-        }
-
-        body.light-mode nav {
-            box-shadow: 0 4px 15px rgba(0, 102, 204, 0.08);
-        }
-
-        /* MOBILE RESPONSIVE */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 2rem; }
-            h3 { font-size: 1.3rem; }
-
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-item::before {
-                left: 20px;
-            }
-
-            .timeline-content {
-                width: 100%;
-                margin-left: 60px !important;
-                margin-right: 0 !important;
-                text-align: left !important;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr !important;
-            }
-        }
-
-        @media (max-width: 1024px) {
-            .projects-grid {
-                grid-template-columns: repeat(2, 1fr) !important;
-            }
-        }
-
-        /* IMAGE UPLOAD */
-        .image-upload-wrapper {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        .image-upload-input {
-            display: none;
-        }
-
-        .image-upload-label {
-            position: absolute;
-            inset: 0;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 0, 0, 0.3);
-            opacity: 0;
-            transition: all 0.3s ease;
-            border-radius: 8px;
-            z-index: 5;
-        }
-
-        .image-preview-container:hover .image-upload-label {
-            opacity: 1;
-            background: rgba(0, 217, 255, 0.2);
-        }
-
-        .image-preview-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        /* FORM MESSAGES */
-        .form-message {
-            padding: 16px 20px;
-            border-radius: 10px;
-            border: 1.5px solid;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: all 0.3s ease;
-            margin-top: 16px;
-        }
-
-        .form-success {
-            background: rgba(0, 217, 255, 0.12);
-            border-color: var(--accent-cyan);
-            color: var(--accent-cyan);
-        }
-
-        .form-error {
-            background: rgba(255, 100, 100, 0.12);
-            border-color: #ff6464;
-            color: #ff6464;
-        }
-    </style>
+@media(max-width:768px){
+  h1{font-size:2.3rem;}
+  h2{font-size:1.7rem;}
+}
+</style>
 </head>
 <body>
-    <!-- NAVBAR -->
-    <nav class="fixed top-0 w-full glass border-b border-blue-900/30 transition duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- LOGO -->
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center">
-                        <i class="fas fa-microchip text-white text-lg font-bold"></i>
-                    </div>
-                    <span class="text-lg font-bold hidden sm:inline">Muhammad Sufyan</span>
-                </div>
+<div class="pcb-grid"></div>
 
-                <!-- DESKTOP LINKS -->
-                <div class="hidden lg:flex space-x-1">
-                    <a href="#about" class="px-4 py-2 rounded-lg hover:bg-white/5 transition font-medium text-sm">About</a>
-                    <a href="#education" class="px-4 py-2 rounded-lg hover:bg-white/5 transition font-medium text-sm">Education</a>
-                    <a href="#skills" class="px-4 py-2 rounded-lg hover:bg-white/5 transition font-medium text-sm">Skills</a>
-                    <a href="#projects" class="px-4 py-2 rounded-lg hover:bg-white/5 transition font-medium text-sm">Projects</a>
-                    <a href="#experience" class="px-4 py-2 rounded-lg hover:bg-white/5 transition font-medium text-sm">Experience</a>
-                    <a href="#certifications" class="px-4 py-2 rounded-lg hover:bg-white/5 transition font-medium text-sm">Certifications</a>
-                    <a href="#contact" class="px-4 py-2 rounded-lg hover:bg-white/5 transition font-medium text-sm">Contact</a>
-                </div>
-
-                <!-- THEME TOGGLE -->
-                <button id="themeToggle" class="p-2.5 rounded-lg glass border border-blue-600/50 hover:border-cyan-400 transition">
-                    <i class="fas fa-moon text-lg"></i>
-                </button>
-
-                <!-- MOBILE MENU BUTTON -->
-                <button id="mobileMenuBtn" class="lg:hidden p-2.5 rounded-lg glass border border-blue-600/50">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-
-            <!-- MOBILE MENU -->
-            <div id="mobileMenu" class="hidden lg:hidden pb-4 space-y-2 bg-black/20 -mx-4 px-4 rounded-b-lg">
-                <a href="#about" class="block px-4 py-2 hover:bg-white/5 rounded">About</a>
-                <a href="#education" class="block px-4 py-2 hover:bg-white/5 rounded">Education</a>
-                <a href="#skills" class="block px-4 py-2 hover:bg-white/5 rounded">Skills</a>
-                <a href="#projects" class="block px-4 py-2 hover:bg-white/5 rounded">Projects</a>
-                <a href="#experience" class="block px-4 py-2 hover:bg-white/5 rounded">Experience</a>
-                <a href="#certifications" class="block px-4 py-2 hover:bg-white/5 rounded">Certifications</a>
-                <a href="#contact" class="block px-4 py-2 hover:bg-white/5 rounded">Contact</a>
-            </div>
+<!-- ============ NAVBAR ============ -->
+<nav class="fixed top-0 w-full glass z-50 transition-shadow duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <a href="#home" class="flex items-center space-x-3">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-400 to-violet-500 flex items-center justify-center">
+          <i class="fas fa-microchip text-white text-sm"></i>
         </div>
-    </nav>
-<!-- HERO SECTION -->
-<section class="min-h-screen flex items-center justify-center pt-20 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-7xl mx-auto w-full">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <span class="text-base font-bold text-primary-c hidden sm:inline" style="font-family:'Syne',sans-serif;">Muhammad Sufyan</span>
+      </a>
 
-            <!-- LEFT SIDE -->
-            <div class="fade-in space-y-8">
-                <div>
-                    <h1 class="text-white mb-4 leading-tight">
-                        <span>Muhammad</span><br>
-                        <span class="glow-text">Sufyan</span>
-                    </h1>
+      <div class="hidden lg:flex items-center space-x-1">
+        <a href="#about" class="nav-link px-3 py-2 rounded-lg hover:bg-white/5 transition font-medium text-sm">About</a>
+        <a href="#education" class="nav-link px-3 py-2 rounded-lg hover:bg-white/5 transition font-medium text-sm">Education</a>
+        <a href="#experience" class="nav-link px-3 py-2 rounded-lg hover:bg-white/5 transition font-medium text-sm">Experience</a>
+        <a href="#skills" class="nav-link px-3 py-2 rounded-lg hover:bg-white/5 transition font-medium text-sm">Skills</a>
+        <a href="#projects" class="nav-link px-3 py-2 rounded-lg hover:bg-white/5 transition font-medium text-sm">Projects</a>
+        <a href="#certifications" class="nav-link px-3 py-2 rounded-lg hover:bg-white/5 transition font-medium text-sm">Certs</a>
+        <a href="#leadership" class="nav-link px-3 py-2 rounded-lg hover:bg-white/5 transition font-medium text-sm">Leadership</a>
+        <a href="#contact" class="nav-link px-3 py-2 rounded-lg hover:bg-white/5 transition font-medium text-sm">Contact</a>
+      </div>
 
-                    <p class="text-xl md:text-2xl font-semibold text-cyan-400 mb-6">
-                        Electrical Engineering Student | PCB Design & Embedded Systems
-                    </p>
-                </div>
-
-                <p class="text-base md:text-lg text-text-secondary leading-relaxed max-w-xl">
-                    First-year Electrical Engineering student at
-                    <span class="text-cyan-400 font-bold">PIEAS</span>
-                    with an exceptional
-                    <span class="text-cyan-400 font-bold">CGPA of 3.98/4.00</span>.
-                    Passionate about circuit design, PCB development,
-                    embedded systems, and innovative engineering solutions.
-                </p>
-
-                <!-- CTA BUTTONS -->
-                <div class="flex flex-col sm:flex-row gap-4 pt-6">
-                    <a href="#contact" class="btn-primary inline-flex items-center justify-center space-x-2">
-                        <i class="fas fa-arrow-right"></i>
-                        <span>Get In Touch</span>
-                    </a>
-
-                    <a href="#projects" class="btn-secondary inline-flex items-center justify-center space-x-2">
-                        <i class="fas fa-code"></i>
-                        <span>View My Work</span>
-                    </a>
-                </div>
-
-                <!-- SOCIAL LINKS -->
-                <div class="flex items-center gap-4 pt-6 border-t border-blue-900/30">
-                    <span class="text-sm font-semibold text-text-secondary">Connect:</span>
-
-                    <a href="https://www.linkedin.com/in/muhammad-sufyan-6214752b8?utm_source=share_via&utm_content=profile&utm_medium=member_android"
-                       target="_blank"
-                       class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:border-cyan-400 transition">
-                        <i class="fab fa-linkedin text-cyan-400"></i>
-                    </a>
-
-                    <a href="https://github.com/sufyan933"
-                       target="_blank"
-                       class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:border-cyan-400 transition">
-                        <i class="fab fa-github text-cyan-400"></i>
-                    </a>
-
-                    <a href="mailto:arhamsufyan5@gmail.com"
-                       class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:border-cyan-400 transition">
-                        <i class="fas fa-envelope text-cyan-400"></i>
-                    </a>
-                </div>
-
-            </div>
-            <!-- END LEFT SIDE -->
-
-            <!-- RIGHT SIDE - PROFILE PICTURE -->
-            <div class="fade-in flex justify-center lg:justify-end items-center">
-                <div class="relative w-80 h-80 md:w-96 md:h-96">
-
-                    <!-- Gradient Border -->
-                    <div class="absolute inset-0 p-1 rounded-2xl bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600">
-                        <div class="w-full h-full rounded-2xl overflow-hidden bg-slate-900">
-                            <img
-                                src="myphoto.jpg"
-                                alt="Muhammad Sufyan"
-                                class="w-full h-full object-cover object-center"
-                            >
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
+      <div class="flex items-center gap-2">
+        <button id="themeToggle" aria-label="Toggle light and dark theme" class="p-2.5 rounded-lg glass border border-cyan-600/40 hover:border-cyan-400 transition">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button id="mobileMenuBtn" aria-label="Open menu" class="lg:hidden p-2.5 rounded-lg glass border border-cyan-600/40">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
     </div>
+
+    <div id="mobileMenu" class="hidden lg:hidden pb-4 space-y-1">
+      <a href="#about" class="block px-4 py-2 hover:bg-white/5 rounded">About</a>
+      <a href="#education" class="block px-4 py-2 hover:bg-white/5 rounded">Education</a>
+      <a href="#experience" class="block px-4 py-2 hover:bg-white/5 rounded">Experience</a>
+      <a href="#skills" class="block px-4 py-2 hover:bg-white/5 rounded">Skills</a>
+      <a href="#projects" class="block px-4 py-2 hover:bg-white/5 rounded">Projects</a>
+      <a href="#certifications" class="block px-4 py-2 hover:bg-white/5 rounded">Certifications</a>
+      <a href="#leadership" class="block px-4 py-2 hover:bg-white/5 rounded">Leadership</a>
+      <a href="#contact" class="block px-4 py-2 hover:bg-white/5 rounded">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section id="home" class="min-h-screen flex items-center pt-24 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto w-full relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+
+      <!-- LEFT -->
+      <div class="reveal is-visible space-y-7">
+        <span class="eyebrow"><span class="dot"></span> 0x00 · SYSTEM ONLINE</span>
+
+        <div>
+          <h1 class="mb-3">
+            Muhammad<br><span class="glow-text">Sufyan</span>
+          </h1>
+          <p class="text-lg md:text-xl font-semibold text-primary-c">
+            Electrical Engineering Student at PIEAS
+          </p>
+          <p class="mono text-cyan-400 text-sm md:text-base mt-3 min-h-[1.6em]">
+            <span id="typewriter"></span><span class="typewriter-cursor">&nbsp;</span>
+          </p>
+        </div>
+
+        <p class="text-base leading-relaxed max-w-xl">
+          B.S. Electrical Engineering student focused on practical engineering across
+          <span class="text-cyan-400 font-semibold">PCB design</span>,
+          <span class="text-cyan-400 font-semibold">embedded systems</span>,
+          <span class="text-cyan-400 font-semibold">RF &amp; wireless hardware</span>,
+          <span class="text-cyan-400 font-semibold">robotics</span>, and
+          <span class="text-cyan-400 font-semibold">power electronics</span> —
+          currently carrying a <span class="text-primary-c font-bold">3.99&nbsp;/&nbsp;4.00 CGPA</span>.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 pt-2">
+          <a href="M.SUFYAN_RESUME.pdf" download class="btn-primary inline-flex items-center justify-center gap-2">
+            <i class="fas fa-download"></i><span>Download Resume</span>
+          </a>
+          <a href="#contact" class="btn-secondary inline-flex items-center justify-center gap-2">
+            <i class="fas fa-paper-plane"></i><span>Contact Me</span>
+          </a>
+        </div>
+
+        <div class="flex items-center gap-3 pt-6 border-t border-cyan-900/30">
+          <span class="mono text-xs text-text-muted mr-1">CONNECT:</span>
+          <a href="https://www.linkedin.com/in/muhammad-sufyan-6214752b8" target="_blank" rel="noopener" aria-label="LinkedIn" class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:border-cyan-400 transition"><i class="fab fa-linkedin text-cyan-400"></i></a>
+          <a href="https://github.com/sufyan933" target="_blank" rel="noopener" aria-label="GitHub" class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:border-cyan-400 transition"><i class="fab fa-github text-cyan-400"></i></a>
+          <a href="mailto:arhamsufyan5@gmail.com" aria-label="Email" class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:border-cyan-400 transition"><i class="fas fa-envelope text-cyan-400"></i></a>
+        </div>
+      </div>
+
+      <!-- RIGHT — PHOTO + PCB TRACE SIGNATURE -->
+      <div class="reveal is-visible flex justify-center lg:justify-end">
+        <div class="relative w-72 h-72 md:w-96 md:h-96">
+          <svg class="hero-trace" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="traceGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#00d9ff"/>
+                <stop offset="100%" stop-color="#8b6bff"/>
+              </linearGradient>
+            </defs>
+            <path d="M20,250 H120 M20,250 v-80 h60"/>
+            <path d="M480,250 H380 M480,250 v80 h-60"/>
+            <path d="M250,20 V120 M250,20 h-80 v40"/>
+            <path d="M250,480 V380 M250,480 h80 v-40"/>
+            <path d="M60,60 L150,150 M440,60 L350,150 M60,440 L150,350 M440,440 L350,350"/>
+            <circle class="hero-node" cx="120" cy="250" r="5" fill="#00d9ff"/>
+            <circle class="hero-node" cx="380" cy="250" r="5" fill="#8b6bff"/>
+            <circle class="hero-node" cx="250" cy="120" r="5" fill="#00e6a8"/>
+            <circle class="hero-node" cx="250" cy="380" r="5" fill="#00d9ff"/>
+          </svg>
+
+          <div class="photo-frame absolute inset-6 p-1.5 rounded-2xl bg-gradient-to-br from-cyan-400 via-blue-500 to-violet-500">
+            <div class="image-preview-container relative w-full h-full rounded-2xl overflow-hidden bg-slate-900 group">
+              <img id="profilePhoto" src="myphoto.jpg" alt="Portrait of Muhammad Sufyan" class="w-full h-full object-cover object-center"
+                   onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900',innerHTML:'&lt;span style=&quot;font-family:Syne,sans-serif;font-size:4rem;font-weight:800;background:linear-gradient(135deg,%2300d9ff,%238b6bff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;&quot;&gt;MS&lt;/span&gt;'}))">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </section>
-    <!-- ABOUT SECTION -->
-    <section id="about" class="py-24 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-center mb-16">
-                About <span class="glow-text">Me</span>
-            </h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="card-glow rounded-xl p-8 fade-in">
-                    <div class="flex items-center space-x-4 mb-6">
-                        <div class="w-14 h-14 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center">
-                            <i class="fas fa-graduation-cap text-2xl text-white"></i>
-                        </div>
-                        <h3 class="text-lg font-bold">Academic Excellence</h3>
-                    </div>
-                    <p class="text-text-secondary text-sm mb-2">Electrical Engineering @ PIEAS</p>
-                    <p class="font-bold text-cyan-400 text-lg">CGPA: 3.98/4.00</p>
-                </div>
-
-                <div class="card-glow rounded-xl p-8 fade-in" style="animation-delay: 0.1s;">
-                    <div class="flex items-center space-x-4 mb-6">
-                        <div class="w-14 h-14 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center">
-                            <i class="fas fa-microchip text-2xl text-white"></i>
-                        </div>
-                        <h3 class="text-lg font-bold">Technical Focus</h3>
-                    </div>
-                    <p class="text-text-secondary text-sm">PCB Design, Embedded Systems</p>
-                    <p class="font-bold text-cyan-400 mt-2">Circuit Analysis & Development</p>
-                </div>
-
-                <div class="card-glow rounded-xl p-8 fade-in" style="animation-delay: 0.2s;">
-                    <div class="flex items-center space-x-4 mb-6">
-                        <div class="w-14 h-14 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center">
-                            <i class="fas fa-map-marker-alt text-2xl text-white"></i>
-                        </div>
-                        <h3 class="text-lg font-bold">Location</h3>
-                    </div>
-                    <p class="text-text-secondary text-sm mb-2">Based in Islamabad, Pakistan</p>
-                    <p class="font-bold text-cyan-400">Hometown: Attock</p>
-                </div>
-
-                <div class="card-glow rounded-xl p-8 fade-in" style="animation-delay: 0.3s;">
-                    <div class="flex items-center space-x-4 mb-6">
-                        <div class="w-14 h-14 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center">
-                            <i class="fas fa-lightbulb text-2xl text-white"></i>
-                        </div>
-                        <h3 class="text-lg font-bold">Passion</h3>
-                    </div>
-                    <p class="text-text-secondary text-sm">Innovation, Problem Solving</p>
-                    <p class="font-bold text-cyan-400 mt-2">Continuous Learning</p>
-                </div>
-            </div>
-
-            <!-- HIGHLIGHT CARD -->
-            <div class="card-glow rounded-xl p-10 mt-12 border-2 border-cyan-400/40 fade-in" style="animation-delay: 0.4s;">
-                <div class="flex items-start gap-6">
-                    <i class="fas fa-star text-4xl text-cyan-400 flex-shrink-0"></i>
-                    <div>
-                        <h3 class="text-2xl font-bold mb-3">Commitment to Excellence</h3>
-                        <p class="text-text-secondary">With a stellar CGPA of 3.98/4.00, I maintain the highest academic standards while actively pursuing emerging technologies and innovative engineering solutions that shape the future of electrical systems.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- EDUCATION SECTION -->
-    <section id="education" class="py-24 px-4 sm:px-6 lg:px-8 bg-tertiary-dark/30">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-center mb-16">
-                <span class="glow-text">Education</span> Timeline
-            </h2>
-
-            <div class="timeline max-w-4xl mx-auto">
-                <div class="timeline-item fade-in">
-                    <div class="timeline-content card-glow rounded-xl p-8">
-                        <h3 class="text-xl font-bold text-cyan-400 mb-2">Bachelor of Science in Electrical Engineering</h3>
-                        <p class="text-text-secondary font-semibold mb-4">Pakistan Institute of Engineering and Applied Sciences (PIEAS)</p>
-                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 text-sm text-text-secondary">
-                            <span class="flex items-center gap-2"><i class="fas fa-calendar text-cyan-400"></i> 2025 – Present</span>
-                            <span class="flex items-center gap-2"><i class="fas fa-book text-cyan-400"></i> 2nd Semester</span>
-                        </div>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="badge"><i class="fas fa-trophy mr-2"></i>CGPA: 3.98/4.00</span>
-                            <span class="badge"><i class="fas fa-star mr-2"></i>Top Tier Institute</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline-item fade-in" style="animation-delay: 0.1s;">
-                    <div class="timeline-content card-glow rounded-xl p-8">
-                        <h3 class="text-xl font-bold text-cyan-400 mb-2">F.Sc (Pre-Engineering)</h3>
-                        <p class="text-text-secondary font-semibold mb-4">Federal College of Science and Commerce, Attock</p>
-                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 text-sm text-text-secondary">
-                            <span class="flex items-center gap-2"><i class="fas fa-calendar text-cyan-400"></i> 2023 – 2025</span>
-                            <span class="flex items-center gap-2"><i class="fas fa-check text-cyan-400"></i> Completed</span>
-                        </div>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="badge"><i class="fas fa-medal mr-2"></i>1025 / 1100</span>
-                            <span class="badge"><i class="fas fa-crown mr-2"></i>Position Holder</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline-item fade-in" style="animation-delay: 0.2s;">
-                    <div class="timeline-content card-glow rounded-xl p-8">
-                        <h3 class="text-xl font-bold text-cyan-400 mb-2">Secondary School Certificate (SSC)</h3>
-                        <p class="text-text-secondary font-semibold mb-4">FG Boys High School, Sanjwal Cantt, Attock</p>
-                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 text-sm text-text-secondary">
-                            <span class="flex items-center gap-2"><i class="fas fa-calendar text-cyan-400"></i> 2021 – 2023</span>
-                            <span class="flex items-center gap-2"><i class="fas fa-check text-cyan-400"></i> Completed</span>
-                        </div>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="badge"><i class="fas fa-medal mr-2"></i>985 / 1100</span>
-                            <span class="badge"><i class="fas fa-crown mr-2"></i>Position Holder</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SKILLS SECTION -->
-    <section id="skills" class="py-24 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-center mb-16">
-                Technical <span class="glow-text">Skills</span>
-            </h2>
-
-            <!-- PROGRAMMING -->
-            <div class="mb-20 fade-in">
-                <h3 class="text-2xl font-bold mb-10 flex items-center">
-                    <i class="fas fa-code text-cyan-400 mr-4 text-3xl"></i>
-                    Programming Languages
-                </h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="card-glow rounded-xl p-6">
-                        <div class="flex justify-between items-center mb-3">
-                            <p class="font-bold">C++</p>
-                            <span class="text-xs text-cyan-400 font-semibold">85%</span>
-                        </div>
-                        <div class="w-full bg-blue-900/30 rounded-full h-2.5 overflow-hidden">
-                            <div class="skill-bar" style="--skill-level: 85%;"></div>
-                        </div>
-                    </div>
-
-                    <div class="card-glow rounded-xl p-6">
-                        <div class="flex justify-between items-center mb-3">
-                            <p class="font-bold">Arduino</p>
-                            <span class="text-xs text-cyan-400 font-semibold">90%</span>
-                        </div>
-                        <div class="w-full bg-blue-900/30 rounded-full h-2.5 overflow-hidden">
-                            <div class="skill-bar" style="--skill-level: 90%;"></div>
-                        </div>
-                    </div>
-
-                    <div class="card-glow rounded-xl p-6">
-                        <div class="flex justify-between items-center mb-3">
-                            <p class="font-bold">Python</p>
-                            <span class="text-xs text-cyan-400 font-semibold">70%</span>
-                        </div>
-                        <div class="w-full bg-blue-900/30 rounded-full h-2.5 overflow-hidden">
-                            <div class="skill-bar" style="--skill-level: 70%;"></div>
-                        </div>
-                    </div>
-
-                    <div class="card-glow rounded-xl p-6">
-                        <div class="flex justify-between items-center mb-3">
-                            <p class="font-bold">MATLAB</p>
-                            <span class="text-xs text-cyan-400 font-semibold">75%</span>
-                        </div>
-                        <div class="w-full bg-blue-900/30 rounded-full h-2.5 overflow-hidden">
-                            <div class="skill-bar" style="--skill-level: 75%;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TOOLS & SOFTWARE -->
-            <div class="mb-20 fade-in" style="animation-delay: 0.1s;">
-                <h3 class="text-2xl font-bold mb-10 flex items-center">
-                    <i class="fas fa-tools text-cyan-400 mr-4 text-3xl"></i>
-                    CAD & Engineering Tools
-                </h3>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                    <div class="card-glow rounded-xl p-6 flex flex-col items-center text-center">
-                        <i class="fas fa-microchip text-3xl text-cyan-400 mb-3"></i>
-                        <p class="font-bold text-sm">KiCad</p>
-                        <span class="badge mt-3" style="margin: 8px 0 0 0; padding: 4px 12px; font-size: 10px;">PCB</span>
-                    </div>
-                    <div class="card-glow rounded-xl p-6 flex flex-col items-center text-center">
-                        <i class="fas fa-wave-square text-3xl text-cyan-400 mb-3"></i>
-                        <p class="font-bold text-sm">LTspice</p>
-                        <span class="badge mt-3" style="margin: 8px 0 0 0; padding: 4px 12px; font-size: 10px;">SIM</span>
-                    </div>
-                    <div class="card-glow rounded-xl p-6 flex flex-col items-center text-center">
-                        <i class="fas fa-layer-group text-3xl text-cyan-400 mb-3"></i>
-                        <p class="font-bold text-sm">Multisim</p>
-                        <span class="badge mt-3" style="margin: 8px 0 0 0; padding: 4px 12px; font-size: 10px;">SIM</span>
-                    </div>
-                    <div class="card-glow rounded-xl p-6 flex flex-col items-center text-center">
-                        <i class="fas fa-calculator text-3xl text-cyan-400 mb-3"></i>
-                        <p class="font-bold text-sm">MATLAB</p>
-                        <span class="badge mt-3" style="margin: 8px 0 0 0; padding: 4px 12px; font-size: 10px;">COMP</span>
-                    </div>
-                    <div class="card-glow rounded-xl p-6 flex flex-col items-center text-center">
-                        <i class="fas fa-file-code text-3xl text-cyan-400 mb-3"></i>
-                        <p class="font-bold text-sm">LaTeX</p>
-                        <span class="badge mt-3" style="margin: 8px 0 0 0; padding: 4px 12px; font-size: 10px;">DOCS</span>
-                    </div>
-                    <div class="card-glow rounded-xl p-6 flex flex-col items-center text-center">
-                        <i class="fas fa-table text-3xl text-cyan-400 mb-3"></i>
-                        <p class="font-bold text-sm">MS Office</p>
-                        <span class="badge mt-3" style="margin: 8px 0 0 0; padding: 4px 12px; font-size: 10px;">PROD</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- COMPETENCIES -->
-            <div class="fade-in" style="animation-delay: 0.2s;">
-                <h3 class="text-2xl font-bold mb-10 flex items-center">
-                    <i class="fas fa-cog text-cyan-400 mr-4 text-3xl"></i>
-                    Engineering Competencies
-                </h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="space-y-3">
-                        <div class="flex flex-wrap gap-2">
-                            <span class="badge">Circuit Design</span>
-                            <span class="badge">PCB Layout</span>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="badge">Circuit Analysis</span>
-                            <span class="badge">Schematics</span>
-                        </div>
-                    </div>
-                    <div class="space-y-3">
-                        <div class="flex flex-wrap gap-2">
-                            <span class="badge">Embedded Systems</span>
-                            <span class="badge">Measurements</span>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="badge">Power Electronics</span>
-                            <span class="badge">IoT</span>
-                        </div>
-                    </div>
-                    <div class="space-y-3">
-                        <div class="flex flex-wrap gap-2">
-                            <span class="badge">Documentation</span>
-                            <span class="badge">Problem Solving</span>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="badge">Robotics</span>
-                            <span class="badge">Hardware Design</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROJECTS SECTION -->
-    <section id="projects" class="py-24 px-4 sm:px-6 lg:px-8 bg-tertiary-dark/30">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-center mb-16">
-                Featured <span class="glow-text">Projects</span>
-            </h2>
-
-            <div class="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- PROJECT 1 -->
-                <div class="card-glow rounded-xl overflow-hidden fade-in group">
-                    <div class="h-48 bg-gradient-to-br from-blue-900 to-cyan-900/50 flex items-center justify-center relative overflow-hidden">
-                        <i class="fas fa-radar text-6xl text-cyan-400/20 group-hover:scale-110 transition duration-500"></i>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-lg font-bold text-cyan-400 mb-3">Arduino Radar System</h3>
-                        <p class="text-text-secondary text-sm mb-6">Intelligent object detection system using Arduino, ultrasonic sensors, and servo motors for spatial awareness and navigation.</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="badge text-xs">Arduino</span>
-                            <span class="badge text-xs">C++</span>
-                            <span class="badge text-xs">Robotics</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PROJECT 2 -->
-                <div class="card-glow rounded-xl overflow-hidden fade-in group" style="animation-delay: 0.1s;">
-                    <div class="h-48 bg-gradient-to-br from-blue-900 to-cyan-900/50 flex items-center justify-center relative overflow-hidden">
-                        <i class="fas fa-car text-6xl text-cyan-400/20 group-hover:scale-110 transition duration-500"></i>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-lg font-bold text-cyan-400 mb-3">Smart Parking System</h3>
-                        <p class="text-text-secondary text-sm mb-6">Arduino-based vehicle detection and parking management solution with real-time sensor integration and IoT capabilities.</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="badge text-xs">IoT</span>
-                            <span class="badge text-xs">Hardware</span>
-                            <span class="badge text-xs">Sensors</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PROJECT 3 -->
-                <div class="card-glow rounded-xl overflow-hidden fade-in group" style="animation-delay: 0.2s;">
-                    <div class="h-48 bg-gradient-to-br from-blue-900 to-cyan-900/50 flex items-center justify-center relative overflow-hidden">
-                        <i class="fas fa-plug text-6xl text-cyan-400/20 group-hover:scale-110 transition duration-500"></i>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-lg font-bold text-cyan-400 mb-3">AC to DC Power Supply PCB</h3>
-                        <p class="text-text-secondary text-sm mb-6">Regulated power supply PCB designed in KiCad with comprehensive schematic and layout optimization for efficiency.</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="badge text-xs">KiCad</span>
-                            <span class="badge text-xs">Hardware</span>
-                            <span class="badge text-xs">Power</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PROJECT 4 -->
-                <div class="card-glow rounded-xl overflow-hidden fade-in group" style="animation-delay: 0.3s;">
-                    <div class="h-48 bg-gradient-to-br from-blue-900 to-cyan-900/50 flex items-center justify-center relative overflow-hidden">
-                        <i class="fas fa-traffic-light text-6xl text-cyan-400/20 group-hover:scale-110 transition duration-500"></i>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-lg font-bold text-cyan-400 mb-3">Traffic Light PCB Design</h3>
-                        <p class="text-text-secondary text-sm mb-6">Complete schematic and PCB layout of a traffic light control circuit using KiCad with optimized signal routing.</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="badge text-xs">PCB</span>
-                            <span class="badge text-xs">Design</span>
-                            <span class="badge text-xs">KiCad</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PROJECT 5 -->
-                <div class="card-glow rounded-xl overflow-hidden fade-in group" style="animation-delay: 0.4s;">
-                    <div class="h-48 bg-gradient-to-br from-blue-900 to-cyan-900/50 flex items-center justify-center relative overflow-hidden">
-                        <i class="fas fa-bolt text-6xl text-cyan-400/20 group-hover:scale-110 transition duration-500"></i>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-lg font-bold text-cyan-400 mb-3">5V DC Power Supply</h3>
-                        <p class="text-text-secondary text-sm mb-6">Regulated 5V DC power supply designed and tested applying rectification, filtering, and voltage regulation principles.</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="badge text-xs">Analog</span>
-                            <span class="badge text-xs">Prototyping</span>
-                            <span class="badge text-xs">Testing</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PROJECT 6 -->
-                <div class="card-glow rounded-xl overflow-hidden fade-in group" style="animation-delay: 0.5s;">
-                    <div class="h-48 bg-gradient-to-br from-blue-900 to-cyan-900/50 flex items-center justify-center relative overflow-hidden">
-                        <i class="fas fa-home text-6xl text-cyan-400/20 group-hover:scale-110 transition duration-500"></i>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-lg font-bold text-cyan-400 mb-3">House Wiring Project</h3>
-                        <p class="text-text-secondary text-sm mb-6">Comprehensive residential wiring model featuring load distribution, circuit planning, and safety compliance standards.</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="badge text-xs">Electrical</span>
-                            <span class="badge text-xs">CAD</span>
-                            <span class="badge text-xs">Planning</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PROJECT 7 -->
-                <div class="card-glow rounded-xl overflow-hidden fade-in group" style="animation-delay: 0.6s;">
-                    <div class="h-48 bg-gradient-to-br from-blue-900 to-cyan-900/50 flex items-center justify-center relative overflow-hidden">
-                        <i class="fas fa-building text-6xl text-cyan-400/20 group-hover:scale-110 transition duration-500"></i>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-lg font-bold text-cyan-400 mb-3">Hotel Management System</h3>
-                        <p class="text-text-secondary text-sm mb-6">Console-based system implementing OOP concepts, data structures, and algorithmic problem-solving techniques.</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="badge text-xs">C++</span>
-                            <span class="badge text-xs">OOP</span>
-                            <span class="badge text-xs">Data Structure</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- EXPERIENCE SECTION -->
-    <section id="experience" class="py-24 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-center mb-16">
-                <span class="glow-text">Leadership</span> & Experience
-            </h2>
-
-            <div class="timeline max-w-4xl mx-auto">
-                <div class="timeline-item fade-in">
-                    <div class="timeline-content card-glow rounded-xl p-8">
-                        <div class="flex items-start gap-4 mb-4">
-                            <i class="fas fa-briefcase text-2xl text-cyan-400 flex-shrink-0"></i>
-                            <h3 class="text-xl font-bold">Management Team – PIEAS Open House 2026</h3>
-                        </div>
-                        <p class="text-text-secondary mb-6 text-sm">Organized and executed PIEAS Open House, a flagship recruitment and engagement event.</p>
-                        <ul class="space-y-2 text-sm text-text-secondary">
-                            <li><i class="fas fa-check text-cyan-400 mr-3"></i>Managed souvenir coordination and awards distribution</li>
-                            <li><i class="fas fa-check text-cyan-400 mr-3"></i>Coordinated with 10+ participating industrial companies</li>
-                            <li><i class="fas fa-check text-cyan-400 mr-3"></i>Ensured flawless event execution</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item fade-in" style="animation-delay: 0.1s;">
-                    <div class="timeline-content card-glow rounded-xl p-8">
-                        <div class="flex items-start gap-4 mb-4">
-                            <i class="fas fa-globe text-2xl text-cyan-400 flex-shrink-0"></i>
-                            <h3 class="text-xl font-bold">Campus Ambassador – Paragon Study Abroad Expo</h3>
-                        </div>
-                        <p class="text-text-secondary mb-6 text-sm">Represented PIEAS and promoted international academic opportunities.</p>
-                        <ul class="space-y-2 text-sm text-text-secondary">
-                            <li><i class="fas fa-check text-cyan-400 mr-3"></i>Managed event coordination and logistics</li>
-                            <li><i class="fas fa-check text-cyan-400 mr-3"></i>Boosted participant engagement metrics</li>
-                            <li><i class="fas fa-check text-cyan-400 mr-3"></i>Professionally represented organization</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item fade-in" style="animation-delay: 0.2s;">
-                    <div class="timeline-content card-glow rounded-xl p-8">
-                        <div class="flex items-start gap-4 mb-4">
-                            <i class="fas fa-cogs text-2xl text-cyan-400 flex-shrink-0"></i>
-                            <h3 class="text-xl font-bold">Management Team – IEEE PIEAS Student Branch</h3>
-                        </div>
-                        <p class="text-text-secondary mb-6 text-sm">Active member contributing to technical society operations and student initiatives.</p>
-                        <ul class="space-y-2 text-sm text-text-secondary">
-                            <li><i class="fas fa-check text-cyan-400 mr-3"></i>Planned and executed technical workshops</li>
-                            <li><i class="fas fa-check text-cyan-400 mr-3"></i>Set up engineering competition events</li>
-                            <li><i class="fas fa-check text-cyan-400 mr-3"></i>Coordinated with industry partners</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item fade-in" style="animation-delay: 0.3s;">
-                    <div class="timeline-content card-glow rounded-xl p-8">
-                        <div class="flex items-start gap-4 mb-4">
-                            <i class="fas fa-lightbulb text-2xl text-cyan-400 flex-shrink-0"></i>
-                            <h3 class="text-xl font-bold">Management Team – InnovateX PIEAS</h3>
-                        </div>
-                        <p class="text-text-secondary mb-6 text-sm">Contributed to innovation competition initiatives supporting creative problem-solving.</p>
-                        <ul class="space-y-2 text-sm text-text-secondary">
-                            <li><i class="fas fa-check text-cyan-400 mr-3"></i>Supported core event management</li>
-                            <li><i class="fas fa-check text-cyan-400 mr-3"></i>Coordinated competition setup</li>
-                            <li><i class="fas fa-check text-cyan-400 mr-3"></i>Facilitated sponsor engagement</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CERTIFICATIONS SECTION -->
-    <section id="certifications" class="py-24 px-4 sm:px-6 lg:px-8 bg-tertiary-dark/30">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-center mb-16">
-                <span class="glow-text">Certifications</span> & Achievements
-            </h2>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <!-- CERTIFICATIONS -->
-                <div class="fade-in">
-                    <h3 class="text-2xl font-bold mb-10 flex items-center">
-                        <i class="fas fa-certificate text-cyan-400 mr-4 text-3xl"></i>
-                        Professional Certifications
-                    </h3>
-                    <div class="space-y-5">
-                        <div class="card-glow rounded-xl p-7 border-l-4 border-cyan-400">
-                            <div class="flex items-start gap-4">
-                                <i class="fas fa-award text-2xl text-cyan-400 flex-shrink-0 mt-1"></i>
-                                <div>
-                                    <h4 class="font-bold text-cyan-400 mb-1">MATLAB Onramp</h4>
-                                    <p class="text-text-secondary text-sm">MathWorks</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card-glow rounded-xl p-7 border-l-4 border-cyan-400">
-                            <div class="flex items-start gap-4">
-                                <i class="fas fa-award text-2xl text-cyan-400 flex-shrink-0 mt-1"></i>
-                                <div>
-                                    <h4 class="font-bold text-cyan-400 mb-1">Introduction to MATLAB</h4>
-                                    <p class="text-text-secondary text-sm">Simplilearn</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card-glow rounded-xl p-7 border-l-4 border-cyan-400">
-                            <div class="flex items-start gap-4">
-                                <i class="fas fa-award text-2xl text-cyan-400 flex-shrink-0 mt-1"></i>
-                                <div>
-                                    <h4 class="font-bold text-cyan-400 mb-1">PCB Design Course</h4>
-                                    <p class="text-text-secondary text-sm">Simplilearn</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card-glow rounded-xl p-7 border-l-4 border-cyan-400">
-                            <div class="flex items-start gap-4">
-                                <i class="fas fa-award text-2xl text-cyan-400 flex-shrink-0 mt-1"></i>
-                                <div>
-                                    <h4 class="font-bold text-cyan-400 mb-1">AI Visibility Toolkit Crash Course</h4>
-                                    <p class="text-text-secondary text-sm">Semrush</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card-glow rounded-xl p-7 border-l-4 border-cyan-400">
-                            <div class="flex items-start gap-4">
-                                <i class="fas fa-award text-2xl text-cyan-400 flex-shrink-0 mt-1"></i>
-                                <div>
-                                    <h4 class="font-bold text-cyan-400 mb-1">AI for Business Professionals</h4>
-                                    <p class="text-text-secondary text-sm">HP LIFE</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ACHIEVEMENTS -->
-                <div class="fade-in" style="animation-delay: 0.1s;">
-                    <h3 class="text-2xl font-bold mb-10 flex items-center">
-                        <i class="fas fa-star text-cyan-400 mr-4 text-3xl"></i>
-                        Key Achievements
-                    </h3>
-                    <div class="space-y-5">
-                        <div class="card-glow rounded-xl p-7 border-l-4 border-cyan-400">
-                            <div class="flex items-start gap-4">
-                                <i class="fas fa-trophy text-2xl text-cyan-400 flex-shrink-0 mt-1"></i>
-                                <div>
-                                    <h4 class="font-bold text-cyan-400 mb-1">Outstanding Academic Record</h4>
-                                    <p class="text-text-secondary text-sm">CGPA: 3.98/4.00 at PIEAS</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card-glow rounded-xl p-7 border-l-4 border-cyan-400">
-                            <div class="flex items-start gap-4">
-                                <i class="fas fa-medal text-2xl text-cyan-400 flex-shrink-0 mt-1"></i>
-                                <div>
-                                    <h4 class="font-bold text-cyan-400 mb-1">College Position Holder</h4>
-                                    <p class="text-text-secondary text-sm">F.Sc Pre-Engineering (1025/1100)</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card-glow rounded-xl p-7 border-l-4 border-cyan-400">
-                            <div class="flex items-start gap-4">
-                                <i class="fas fa-medal text-2xl text-cyan-400 flex-shrink-0 mt-1"></i>
-                                <div>
-                                    <h4 class="font-bold text-cyan-400 mb-1">School Position Holder</h4>
-                                    <p class="text-text-secondary text-sm">SSC Examination (985/1100)</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card-glow rounded-xl p-7 border-l-4 border-cyan-400">
-                            <div class="flex items-start gap-4">
-                                <i class="fas fa-star text-2xl text-cyan-400 flex-shrink-0 mt-1"></i>
-                                <div>
-                                    <h4 class="font-bold text-cyan-400 mb-1">Mathematics Competition</h4>
-                                    <p class="text-text-secondary text-sm">Selected Participant - COMSATS Attock</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card-glow rounded-xl p-7 border-l-4 border-cyan-400">
-                            <div class="flex items-start gap-4">
-                                <i class="fas fa-language text-2xl text-cyan-400 flex-shrink-0 mt-1"></i>
-                                <div>
-                                    <h4 class="font-bold text-cyan-400 mb-1">Multilingual Proficiency</h4>
-                                    <p class="text-text-secondary text-sm">English (Professional) & Urdu (Native)</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-center mb-16">
-                Get in <span class="glow-text">Touch</span>
-            </h2>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                <!-- LEFT SIDE - CONTACT INFO -->
-                <div class="space-y-8 fade-in">
-                    <h3 class="text-2xl font-bold">Direct Contact Channels</h3>
-
-                    <!-- EMAIL -->
-                    <div class="card-glow rounded-xl p-8 flex items-start gap-6">
-                        <div class="w-16 h-16 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-envelope text-2xl text-white"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-lg font-bold text-cyan-400 mb-2">Email</h4>
-                            <a href="mailto:arhamsufyan5@gmail.com" class="text-text-secondary hover:text-cyan-400 transition font-medium">arhamsufyan5@gmail.com</a>
-                        </div>
-                    </div>
-
-                    <!-- PHONE -->
-                    <div class="card-glow rounded-xl p-8 flex items-start gap-6">
-                        <div class="w-16 h-16 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-phone text-2xl text-white"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-lg font-bold text-cyan-400 mb-2">Phone</h4>
-                            <a href="tel:+923295863683" class="text-text-secondary hover:text-cyan-400 transition font-medium">+92 329 5863683</a>
-                        </div>
-                    </div>
-
-                    <!-- LOCATION -->
-                    <div class="card-glow rounded-xl p-8 flex items-start gap-6">
-                        <div class="w-16 h-16 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-map-pin text-2xl text-white"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-lg font-bold text-cyan-400 mb-2">Location</h4>
-                            <p class="text-text-secondary font-medium">Islamabad, Pakistan</p>
-                            <p class="text-text-secondary text-sm">Hometown: Attock, Punjab</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- RIGHT SIDE - CONTACT FORM -->
-                <div class="fade-in" style="animation-delay: 0.1s;">
-                    <h3 class="text-2xl font-bold mb-8">Send Me a Message</h3>
-                    
-                    <form id="contactForm" class="space-y-6">
-                        <!-- NAME -->
-                        <div>
-                            <label for="name" class="block text-sm font-bold mb-2">Full Name</label>
-                            <input 
-                                type="text" 
-                                id="name" 
-                                name="name" 
-                                required
-                                placeholder="John Doe"
-                                class="glow-input w-full"
-                            >
-                        </div>
-
-                        <!-- EMAIL -->
-                        <div>
-                            <label for="email" class="block text-sm font-bold mb-2">Email Address</label>
-                            <input 
-                                type="email" 
-                                id="email" 
-                                name="email" 
-                                required
-                                placeholder="your.email@example.com"
-                                class="glow-input w-full"
-                            >
-                        </div>
-
-                        <!-- SUBJECT -->
-                        <div>
-                            <label for="subject" class="block text-sm font-bold mb-2">Subject</label>
-                            <input 
-                                type="text" 
-                                id="subject" 
-                                name="subject" 
-                                required
-                                placeholder="Inquiry about portfolio"
-                                class="glow-input w-full"
-                            >
-                        </div>
-
-                        <!-- MESSAGE -->
-                        <div>
-                            <label for="message" class="block text-sm font-bold mb-2">Message</label>
-                            <textarea 
-                                id="message" 
-                                name="message" 
-                                rows="5"
-                                required
-                                placeholder="Your message here..."
-                                class="glow-input w-full resize-none"
-                            ></textarea>
-                        </div>
-
-                        <!-- SUBMIT -->
-                        <button type="submit" class="btn-primary w-full">
-                            <i class="fas fa-paper-plane mr-2"></i>
-                            Send Message
-                        </button>
-                    </form>
-
-                    <!-- FORM STATUS -->
-                    <div id="formStatus" class="form-message hidden mt-6">
-                        <i class="fas fa-check-circle text-lg flex-shrink-0"></i>
-                        <span id="formStatusText"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-tertiary-dark/50 backdrop-blur-sm border-t border-blue-900/30 py-16 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-                <!-- NAVIGATION -->
-                <div>
-                    <h4 class="font-bold mb-6 text-cyan-400">Quick Links</h4>
-                    <div class="space-y-3 text-text-secondary text-sm">
-                        <a href="#about" class="hover:text-cyan-400 transition">About</a><br>
-                        <a href="#skills" class="hover:text-cyan-400 transition">Skills</a><br>
-                        <a href="#projects" class="hover:text-cyan-400 transition">Projects</a>
-                    </div>
-                </div>
-
-                <!-- MORE LINKS -->
-                <div>
-                    <h4 class="font-bold mb-6 text-cyan-400">More</h4>
-                    <div class="space-y-3 text-text-secondary text-sm">
-                        <a href="#education" class="hover:text-cyan-400 transition">Education</a><br>
-                        <a href="#experience" class="hover:text-cyan-400 transition">Experience</a><br>
-                        <a href="#contact" class="hover:text-cyan-400 transition">Contact</a>
-                    </div>
-                </div>
-
-         <!-- SOCIAL -->
-<div>
-    <h4 class="font-bold mb-6 text-cyan-400">Connect</h4>
-    <div class="flex gap-4">
-        <!-- LinkedIn -->
-        <a href="https://www.linkedin.com/in/muhammad-sufyan-6214752b8?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:border-cyan-400 transition text-cyan-400">
-            <i class="fab fa-linkedin"></i>
-        </a>
-        <!-- GitHub -->
-        <a href="https://github.com/sufyan933" target="_blank" class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:border-cyan-400 transition text-cyan-400">
-            <i class="fab fa-github"></i>
-        </a>
-        <!-- Email -->
-        <a href="mailto:arhamsufyan5@gmail.com" class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:border-cyan-400 transition text-cyan-400">
-            <i class="fas fa-envelope"></i>
-        </a>
+<!-- ============ ABOUT ============ -->
+<section id="about" class="py-24 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="section-head text-center">
+      <span class="eyebrow"><span class="dot"></span> 0x01 · ABOUT</span>
+      <h2>About <span class="glow-text">Me</span></h2>
     </div>
-</div>
 
-            <!-- FOOTER BOTTOM -->
-            <div class="border-t border-blue-900/30 pt-8 text-center text-text-secondary text-sm">
-                <p>&copy; 2026 Muhammad Sufyan. All Rights Reserved.</p>
-                <p class="mt-2">Engineered with <span class="text-cyan-400">❤</span> for Excellence</p>
-            </div>
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-10">
+      <div class="lg:col-span-3 card-glow p-8 reveal">
+        <p class="text-base leading-relaxed mb-5">
+          I'm a B.S. Electrical Engineering student at <span class="text-cyan-400 font-semibold">PIEAS</span>, focused on building
+          practical skills across PCB design, embedded systems, RF &amp; wireless hardware, robotics, power electronics, and circuit analysis.
+          I enjoy taking engineering concepts from schematics and simulations all the way to working hardware.
+        </p>
+        <p class="text-base leading-relaxed">
+          I'm currently expanding my experience in <span class="text-cyan-400 font-semibold">ROS 2 and robotics</span> while developing
+          deeper skills in RF PCB design, wireless hardware, power electronics, and modern microcontroller platforms.
+        </p>
+        <div class="mt-7 pt-6 border-t border-cyan-900/30 flex flex-wrap items-center gap-3 mono text-xs">
+          <span class="badge">CONCEPT</span><i class="fas fa-arrow-right text-text-muted"></i>
+          <span class="badge">SCHEMATIC</span><i class="fas fa-arrow-right text-text-muted"></i>
+          <span class="badge">SIMULATION</span><i class="fas fa-arrow-right text-text-muted"></i>
+          <span class="badge">PCB</span><i class="fas fa-arrow-right text-text-muted"></i>
+          <span class="badge">FIRMWARE</span><i class="fas fa-arrow-right text-text-muted"></i>
+          <span class="badge">TESTING</span><i class="fas fa-arrow-right text-text-muted"></i>
+          <span class="badge badge-green">OPTIMIZATION</span>
         </div>
-    </footer>
+      </div>
 
-    <!-- JAVASCRIPT -->
-    <script>
-        // THEME TOGGLE
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
+      <div class="lg:col-span-2 card-glow p-8 reveal flex flex-col justify-between" style="border-color:rgba(0,217,255,0.35);">
+        <div>
+          <i class="fas fa-quote-left text-2xl text-cyan-400 mb-4"></i>
+          <p class="text-lg text-primary-c font-medium leading-snug" style="font-family:'Syne',sans-serif;">
+            "The best way to understand hardware is to build it."
+          </p>
+        </div>
+        <div class="mt-6 flex items-center gap-2 mono text-xs text-text-muted">
+          <span class="text-cyan-400 font-bold">BUILD</span> →
+          <span class="text-cyan-400 font-bold">TEST</span> →
+          <span class="text-cyan-400 font-bold">DEBUG</span> →
+          <span class="text-cyan-400 font-bold">IMPROVE</span>
+        </div>
+      </div>
+    </div>
 
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        if (savedTheme === 'light') {
-            body.classList.add('light-mode');
-            themeToggle.innerHTML = '<i class="fas fa-sun text-lg"></i>';
-        }
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="card-glow p-7 reveal">
+        <div class="icon-tile mb-5"><i class="fas fa-map-marker-alt text-white"></i></div>
+        <h3 class="text-base mb-1">Based In</h3>
+        <p class="text-sm">Islamabad, Pakistan</p>
+        <p class="text-xs text-text-muted mt-1">Hometown: Attock, Punjab</p>
+      </div>
+      <div class="card-glow p-7 reveal">
+        <div class="icon-tile mb-5"><i class="fas fa-satellite-dish text-white"></i></div>
+        <h3 class="text-base mb-1">Focus Areas</h3>
+        <p class="text-sm">RF PCB Design, Wireless Hardware</p>
+        <p class="text-xs text-text-muted mt-1">Multi-layer PCB &amp; Power Electronics</p>
+      </div>
+      <div class="card-glow p-7 reveal">
+        <div class="icon-tile mb-5"><i class="fas fa-robot text-white"></i></div>
+        <h3 class="text-base mb-1">Currently Learning</h3>
+        <p class="text-sm">ROS 2 &amp; Robotics</p>
+        <p class="text-xs text-text-muted mt-1">SLAM &amp; Autonomous Navigation Foundations</p>
+      </div>
+      <div class="card-glow p-7 reveal">
+        <div class="icon-tile mb-5"><i class="fas fa-graduation-cap text-white"></i></div>
+        <h3 class="text-base mb-1">Academic Standing</h3>
+        <p class="text-sm text-cyan-400 font-bold">3.99 / 4.00 CGPA</p>
+        <p class="text-xs text-text-muted mt-1">B.S. Electrical Engineering, PIEAS</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('light-mode');
-            const isLightMode = body.classList.contains('light-mode');
-            localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
-            themeToggle.innerHTML = isLightMode 
-                ? '<i class="fas fa-sun text-lg"></i>' 
-                : '<i class="fas fa-moon text-lg"></i>';
-        });
+<!-- ============ METRICS ============ -->
+<section class="py-16 px-4 sm:px-6 lg:px-8 border-y border-cyan-900/20">
+  <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 text-center">
+    <div class="reveal">
+      <p class="mono text-2xl md:text-3xl font-bold glow-text">3.99/4.0</p>
+      <p class="text-xs text-text-muted mt-2 uppercase tracking-wide">Current CGPA</p>
+    </div>
+    <div class="reveal">
+      <p class="mono text-2xl md:text-3xl font-bold glow-text">1025/1100</p>
+      <p class="text-xs text-text-muted mt-2 uppercase tracking-wide">FSc Score</p>
+    </div>
+    <div class="reveal">
+      <p class="mono text-2xl md:text-3xl font-bold glow-text">985/1100</p>
+      <p class="text-xs text-text-muted mt-2 uppercase tracking-wide">SSC Score</p>
+    </div>
+    <div class="reveal">
+      <p class="mono text-2xl md:text-3xl font-bold glow-text">9+</p>
+      <p class="text-xs text-text-muted mt-2 uppercase tracking-wide">Major Projects</p>
+    </div>
+    <div class="reveal">
+      <p class="mono text-2xl md:text-3xl font-bold glow-text">10+</p>
+      <p class="text-xs text-text-muted mt-2 uppercase tracking-wide">Certifications</p>
+    </div>
+    <div class="reveal">
+      <p class="mono text-2xl md:text-3xl font-bold glow-text">Multiple</p>
+      <p class="text-xs text-text-muted mt-2 uppercase tracking-wide">Leadership Roles</p>
+    </div>
+  </div>
+</section>
 
-        // MOBILE MENU
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+<!-- ============ EDUCATION ============ -->
+<section id="education" class="py-24 px-4 sm:px-6 lg:px-8 bg-tertiary-dark/30">
+  <div class="max-w-7xl mx-auto">
+    <div class="section-head text-center">
+      <span class="eyebrow"><span class="dot"></span> 0x02 · EDUCATION_LOG</span>
+      <h2><span class="glow-text">Academic</span> Timeline</h2>
+    </div>
 
-        document.querySelectorAll('#mobileMenu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
+    <div class="timeline max-w-5xl mx-auto">
+      <div class="timeline-item reveal">
+        <div class="timeline-content card-glow p-8">
+          <h3 class="text-cyan-400 mb-1">B.S. Electrical Engineering</h3>
+          <p class="font-semibold text-primary-c text-sm mb-4">Pakistan Institute of Engineering and Applied Sciences (PIEAS)</p>
+          <div class="flex flex-wrap gap-2 mb-4 mono text-xs text-text-muted">
+            <span><i class="fas fa-calendar text-cyan-400 mr-1"></i>2025 – Present</span>
+          </div>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="badge"><i class="fas fa-trophy mr-1"></i>CGPA: 3.99 / 4.00</span>
+          </div>
+          <p class="text-xs text-text-muted mb-2">Focus areas:</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="badge badge-violet">Electronics</span>
+            <span class="badge badge-violet">Circuit Analysis</span>
+            <span class="badge badge-violet">Embedded Systems</span>
+            <span class="badge badge-violet">PCB Design</span>
+            <span class="badge badge-violet">RF &amp; Wireless Hardware</span>
+            <span class="badge badge-violet">Power Electronics</span>
+            <span class="badge badge-violet">Robotics</span>
+            <span class="badge badge-violet">Automation</span>
+          </div>
+        </div>
+      </div>
 
-        // SMOOTH SCROLL
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({behavior: 'smooth', block: 'start'});
-                }
-            });
-        });
+      <div class="timeline-item reveal">
+        <div class="timeline-content card-glow p-8">
+          <h3 class="text-cyan-400 mb-1">FSc Pre-Engineering</h3>
+          <p class="font-semibold text-primary-c text-sm mb-4">Federal College of Science and Commerce, Attock</p>
+          <div class="flex flex-wrap gap-2 mb-4 mono text-xs text-text-muted">
+            <span><i class="fas fa-calendar text-cyan-400 mr-1"></i>2023 – 2025</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="badge"><i class="fas fa-medal mr-1"></i>1025 / 1100</span>
+            <span class="badge badge-green">1st Position in College — Pre-Engineering</span>
+            <span class="badge badge-green">1st Position in Collge  — FSc Part I</span>
+            <span class="badge badge-green">1st Position in College — FSc Part II</span>
+          </div>
+        </div>
+      </div>
 
+      <div class="timeline-item reveal">
+        <div class="timeline-content card-glow p-8">
+          <h3 class="text-cyan-400 mb-1">Secondary School Certificate</h3>
+          <p class="font-semibold text-primary-c text-sm mb-4">Federal Government Educational Institutions (FGEI), Wah Region</p>
+          <div class="flex flex-wrap gap-2 mb-4 mono text-xs text-text-muted">
+            <span><i class="fas fa-calendar text-cyan-400 mr-1"></i>2021 – 2023</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="badge"><i class="fas fa-medal mr-1"></i>985 / 1100</span>
+            <span class="badge badge-green">2nd Position — School Level</span>
+            <span class="badge badge-green">Certificate of Appreciation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- ============ EXPERIENCE ============ -->
+<section id="experience" class="py-24 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="section-head text-center">
+      <span class="eyebrow"><span class="dot"></span> 0x03 · EXPERIENCE</span>
+      <h2>Work &amp; <span class="glow-text">Internships</span></h2>
+    </div>
 
-        // CONTACT FORM WITH FORMSUBMIT
-        const contactForm = document.getElementById('contactForm');
-        const formStatus = document.getElementById('formStatus');
-        const formStatusText = document.getElementById('formStatusText');
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div class="card-glow p-8 reveal">
+        <div class="flex items-start gap-4 mb-4">
+          <div class="icon-tile"><i class="fas fa-robot text-white"></i></div>
+          <div>
+            <h3 class="text-primary-c">ROS 2 Intern</h3>
+            <p class="text-cyan-400 text-sm font-semibold">ArboTrix Lab</p>
+            <p class="mono text-xs text-text-muted mt-1"><i class="fas fa-calendar mr-1"></i>July 2026 – Present</p>
+          </div>
+        </div>
+        <p class="text-sm mb-5">Working on robotics software and autonomous-system foundations through hands-on ROS 2 development.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="badge">ROS 2 Architecture</span>
+          <span class="badge">Pub/Sub Communication</span>
+          <span class="badge">Linux Robotics Workflows</span>
+          <span class="badge">URDF / Xacro</span>
+          <span class="badge">Gazebo Simulation</span>
+          <span class="badge">RViz2</span>
+          <span class="badge">Differential-Drive Robots</span>
+          <span class="badge">LiDAR &amp; Sensor Integration</span>
+          <span class="badge">SLAM Foundations</span>
+        </div>
+      </div>
 
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
+      <div class="card-glow p-8 reveal">
+        <div class="flex items-start gap-4 mb-4">
+          <div class="icon-tile"><i class="fas fa-hands-helping text-white"></i></div>
+          <div>
+            <h3 class="text-primary-c">Volunteer Intern</h3>
+            <p class="text-cyan-400 text-sm font-semibold">Alkhidmat Foundation</p>
+          </div>
+        </div>
+        <p class="text-sm mb-5">Contributed to community-oriented initiatives, event coordination, and volunteer operations.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="badge">Community Initiatives</span>
+          <span class="badge">Team Collaboration</span>
+          <span class="badge">Event Coordination</span>
+          <span class="badge">Volunteer Operations</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            const formData = new FormData(contactForm);
-            
-            try {
-                // Using FormSubmit.co for email functionality
-                const response = await fetch('https://formsubmit.co/ajax/arhamsufyan5@gmail.com', {
-                    method: 'POST',
-                    body: formData
-                });
+<!-- ============ SKILLS ============ -->
+<section id="skills" class="py-24 px-4 sm:px-6 lg:px-8 bg-tertiary-dark/30">
+  <div class="max-w-7xl mx-auto">
+    <div class="section-head text-center">
+      <span class="eyebrow"><span class="dot"></span> 0x04 · SKILL_MAP</span>
+      <h2>Technical <span class="glow-text">Skills</span></h2>
+    </div>
 
-                if (response.ok) {
-                    formStatus.classList.remove('hidden', 'form-error');
-                    formStatus.classList.add('form-success');
-                    formStatusText.textContent = 'Message sent successfully! I\'ll get back to you soon.';
-                    contactForm.reset();
-                    
-                    setTimeout(() => {
-                        formStatus.classList.add('hidden');
-                    }, 5000);
-                } else {
-                    throw new Error('Form submission failed');
-                }
-            } catch (error) {
-                formStatus.classList.remove('hidden', 'form-success');
-                formStatus.classList.add('form-error');
-                formStatusText.textContent = 'Error sending message. Please try again or email directly.';
-            }
-        });
+    <div id="skillsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </div>
+</section>
 
-        // FADE IN ANIMATION ON SCROLL
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
+<!-- ============ PROJECTS ============ -->
+<section id="projects" class="py-24 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="section-head text-center">
+      <span class="eyebrow"><span class="dot"></span> 0x05 · PROJECT_ARCHIVE</span>
+      <h2>Featured <span class="glow-text">Projects</span></h2>
+      <p class="text-sm text-text-muted mt-4 max-w-2xl mx-auto">Every project ships with a GitHub repository and README — filter by discipline below.</p>
+    </div>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
+    <div id="filterBar" class="flex flex-wrap justify-center gap-2 mb-12"></div>
 
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
+    <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
 
-        // NAVBAR SHADOW ON SCROLL
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('nav');
-            if (window.pageYOffset > 50) {
-                navbar.style.boxShadow = '0 10px 30px rgba(0, 217, 255, 0.1)';
-            } else {
-                navbar.style.boxShadow = 'none';
-            }
-        });
+    <div class="mt-16 reveal">
+      <h3 class="text-center mb-8 text-lg text-text-muted font-semibold">Additional Explorations</h3>
+      <div id="miniProjects" class="flex flex-wrap justify-center gap-3"></div>
+    </div>
+  </div>
+</section>
 
-        // ACTIVE LINK HIGHLIGHTING
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('nav a[href^="#"]');
-            
-            let currentSection = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop - 200) {
-                    currentSection = section.getAttribute('id');
-                }
-            });
+<!-- ============ GITHUB ============ -->
+<section id="github" class="py-20 px-4 sm:px-6 lg:px-8 bg-tertiary-dark/30">
+  <div class="max-w-5xl mx-auto card-glow p-10 reveal text-center" style="border-color:rgba(0,217,255,0.3);">
+    <i class="fab fa-github text-4xl text-cyan-400 mb-4"></i>
+    <h3 class="mb-3">Open Source &amp; Hardware Repositories</h3>
+    <p class="text-sm mb-6 max-w-xl mx-auto">All PCB designs, firmware, and code for the projects above are version-controlled and public on GitHub.</p>
+    <div id="githubStats" class="flex justify-center gap-8 mb-7 mono text-sm text-text-muted"></div>
+    <a href="https://github.com/sufyan933" target="_blank" rel="noopener" class="btn-primary inline-flex items-center gap-2">
+      <i class="fab fa-github"></i><span>View GitHub Profile</span>
+    </a>
+  </div>
+</section>
 
-            navLinks.forEach(link => {
-                link.classList.remove('text-cyan-400');
-                if (link.getAttribute('href') === `#${currentSection}`) {
-                    link.classList.add('text-cyan-400');
-                }
-            });
-        });
-    </script>
+<!-- ============ CERTIFICATIONS ============ -->
+<section id="certifications" class="py-24 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="section-head text-center">
+      <span class="eyebrow"><span class="dot"></span> 0x06 · CERTIFICATIONS</span>
+      <h2><span class="glow-text">Certifications</span> &amp; Coursework</h2>
+    </div>
+
+    <div id="featuredCert" class="mb-10"></div>
+    <div id="certGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </div>
+</section>
+
+<!-- ============ LEADERSHIP ============ -->
+<section id="leadership" class="py-24 px-4 sm:px-6 lg:px-8 bg-tertiary-dark/30">
+  <div class="max-w-7xl mx-auto">
+    <div class="section-head text-center">
+      <span class="eyebrow"><span class="dot"></span> 0x07 · LEADERSHIP</span>
+      <h2>Leadership &amp; <span class="glow-text">Campus Activities</span></h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+      <div class="card-glow p-7 reveal">
+        <div class="icon-tile mb-4"><i class="fas fa-id-badge text-white"></i></div>
+        <h3 class="text-base text-primary-c mb-1">Campus Ambassador</h3>
+        <p class="text-sm text-cyan-400">National Youth Leadership Program (NYLP)</p>
+      </div>
+      <div class="card-glow p-7 reveal">
+        <div class="icon-tile mb-4"><i class="fas fa-id-badge text-white"></i></div>
+        <h3 class="text-base text-primary-c mb-1">Campus Ambassador</h3>
+        <p class="text-sm text-cyan-400">The Leap Pakistan</p>
+      </div>
+      <div class="card-glow p-7 reveal">
+        <div class="icon-tile mb-4"><i class="fas fa-id-badge text-white"></i></div>
+        <h3 class="text-base text-primary-c mb-1">Campus Ambassador</h3>
+        <p class="text-sm text-cyan-400">Paragon Study Abroad Expo</p>
+      </div>
+      <div class="card-glow p-7 reveal">
+        <div class="icon-tile mb-4"><i class="fas fa-id-badge text-white"></i></div>
+        <h3 class="text-base text-primary-c mb-1">Campus Ambassador</h3>
+        <p class="text-sm text-cyan-400">Skillistan</p>
+      </div>
+      <div class="card-glow p-7 reveal">
+        <div class="icon-tile mb-4"><i class="fas fa-users-cog text-white"></i></div>
+        <h3 class="text-base text-primary-c mb-1">Management Team</h3>
+        <p class="text-sm text-cyan-400">IEEE PIEAS Student Branch</p>
+      </div>
+      <div class="card-glow p-7 reveal">
+        <div class="icon-tile mb-4"><i class="fas fa-users-cog text-white"></i></div>
+        <h3 class="text-base text-primary-c mb-1">Management Team</h3>
+        <p class="text-sm text-cyan-400">PIEAS Open House</p>
+      </div>
+      <div class="card-glow p-7 reveal">
+        <div class="icon-tile mb-4"><i class="fas fa-users-cog text-white"></i></div>
+        <h3 class="text-base text-primary-c mb-1">Management Team</h3>
+        <p class="text-sm text-cyan-400">InnovateX PIEAS</p>
+      </div>
+    </div>
+
+    <div class="card-glow p-9 reveal" style="border-color:rgba(0,230,168,0.35);">
+      <div class="flex flex-col md:flex-row items-start gap-6">
+        <div class="icon-tile" style="background:linear-gradient(135deg,var(--accent-green),var(--accent-cyan));"><i class="fas fa-trophy text-white"></i></div>
+        <div>
+          <span class="badge badge-green mb-3">Runner-Up</span>
+          <h3 class="text-primary-c mb-2">Genesis 3.0 Pitch Competition</h3>
+          <p class="text-sm mb-4">Presented a conceptual Maglev transportation system exploring the engineering feasibility of high-speed, contactless transit.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="badge">Electromagnetic Levitation</span>
+            <span class="badge">Linear Propulsion</span>
+            <span class="badge">High-Speed Transportation</span>
+            <span class="badge">Engineering Feasibility</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LANGUAGES ============ -->
+<section id="languages" class="py-20 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-3xl mx-auto text-center">
+    <span class="eyebrow"><span class="dot"></span> 0x08 · LANGUAGES</span>
+    <h2 class="mt-4 mb-10">Languages</h2>
+    <div class="grid grid-cols-2 gap-6">
+      <div class="card-glow p-7 reveal">
+        <i class="fas fa-comment-dots text-2xl text-cyan-400 mb-3"></i>
+        <h3 class="text-base text-primary-c mb-1">English</h3>
+        <p class="text-xs text-text-muted uppercase tracking-wide mono">Professional</p>
+      </div>
+      <div class="card-glow p-7 reveal">
+        <i class="fas fa-comment-dots text-2xl text-cyan-400 mb-3"></i>
+        <h3 class="text-base text-primary-c mb-1">Urdu</h3>
+        <p class="text-xs text-text-muted uppercase tracking-wide mono">Native</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="py-24 px-4 sm:px-6 lg:px-8 bg-tertiary-dark/30">
+  <div class="max-w-7xl mx-auto">
+    <div class="section-head text-center">
+      <span class="eyebrow"><span class="dot"></span> 0x09 · CONTACT</span>
+      <h2>Let's Build Something <span class="glow-text">That Matters</span></h2>
+      <p class="text-sm text-text-muted mt-4 max-w-xl mx-auto">Open to internships and collaboration in PCB design, RF hardware, embedded systems, robotics, and open-source hardware.</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div class="space-y-6 reveal">
+        <div class="card-glow p-7 flex items-start gap-5">
+          <div class="icon-tile"><i class="fas fa-envelope text-white"></i></div>
+          <div>
+            <h3 class="text-base text-primary-c mb-1">Email</h3>
+            <a href="mailto:arhamsufyan5@gmail.com" class="text-sm hover:text-cyan-400 transition">arhamsufyan5@gmail.com</a>
+          </div>
+        </div>
+        <div class="card-glow p-7 flex items-start gap-5">
+          <div class="icon-tile"><i class="fas fa-phone text-white"></i></div>
+          <div>
+            <h3 class="text-base text-primary-c mb-1">Phone</h3>
+            <a href="tel:+923295863683" class="text-sm hover:text-cyan-400 transition">+92 329 5863683</a>
+          </div>
+        </div>
+        <div class="card-glow p-7 flex items-start gap-5">
+          <div class="icon-tile"><i class="fas fa-map-pin text-white"></i></div>
+          <div>
+            <h3 class="text-base text-primary-c mb-1">Location</h3>
+            <p class="text-sm">Islamabad, Pakistan</p>
+            <p class="text-xs text-text-muted">Hometown: Attock, Punjab</p>
+          </div>
+        </div>
+        <div class="rounded-2xl overflow-hidden border border-cyan-900/30" style="height:220px;">
+          <iframe title="Islamabad, Pakistan map" src="https://www.google.com/maps?q=Islamabad,Pakistan&output=embed" width="100%" height="100%" style="border:0;filter:grayscale(0.3) invert(0.9) contrast(0.9);" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <form id="contactForm" class="space-y-5">
+          <div>
+            <label for="name" class="block text-xs font-bold mb-2 uppercase tracking-wide text-text-muted">Full Name</label>
+            <input type="text" id="name" name="name" required placeholder="Your name" class="glow-input">
+          </div>
+          <div>
+            <label for="email" class="block text-xs font-bold mb-2 uppercase tracking-wide text-text-muted">Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="you@example.com" class="glow-input">
+          </div>
+          <div>
+            <label for="subject" class="block text-xs font-bold mb-2 uppercase tracking-wide text-text-muted">Subject</label>
+            <input type="text" id="subject" name="subject" required placeholder="Internship / collaboration inquiry" class="glow-input">
+          </div>
+          <div>
+            <label for="message" class="block text-xs font-bold mb-2 uppercase tracking-wide text-text-muted">Message</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Tell me about the opportunity..." class="glow-input resize-none"></textarea>
+          </div>
+          <button type="submit" class="btn-primary w-full"><i class="fas fa-paper-plane mr-2"></i>Send Message</button>
+        </form>
+        <div id="formStatus" class="hidden mt-5 p-4 rounded-lg border text-sm"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="border-t border-cyan-900/30 py-14 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-400 to-violet-500 flex items-center justify-center"><i class="fas fa-microchip text-white text-sm"></i></div>
+          <span class="font-bold text-primary-c" style="font-family:'Syne',sans-serif;">Muhammad Sufyan</span>
+        </div>
+        <p class="text-sm max-w-sm">Electrical Engineering student building real hardware — PCBs, RF systems, embedded firmware, and robotics.</p>
+      </div>
+      <div>
+        <h4 class="font-bold mb-4 text-cyan-400 text-sm uppercase tracking-wide">Navigate</h4>
+        <div class="space-y-2 text-sm">
+          <a href="#about" class="block hover:text-cyan-400 transition">About</a>
+          <a href="#projects" class="block hover:text-cyan-400 transition">Projects</a>
+          <a href="#certifications" class="block hover:text-cyan-400 transition">Certifications</a>
+          <a href="#contact" class="block hover:text-cyan-400 transition">Contact</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-bold mb-4 text-cyan-400 text-sm uppercase tracking-wide">Connect</h4>
+        <div class="flex gap-3">
+          <a href="https://www.linkedin.com/in/muhammad-sufyan-6214752b8" target="_blank" rel="noopener" aria-label="LinkedIn" class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:border-cyan-400 transition text-cyan-400"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/sufyan933" target="_blank" rel="noopener" aria-label="GitHub" class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:border-cyan-400 transition text-cyan-400"><i class="fab fa-github"></i></a>
+          <a href="mailto:arhamsufyan5@gmail.com" aria-label="Email" class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:border-cyan-400 transition text-cyan-400"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-cyan-900/30 pt-7 text-center text-xs text-text-muted mono">
+      <p>&copy; 2026 Muhammad Sufyan. All rights reserved.</p>
+      <p class="mt-2">BUILD → TEST → DEBUG → IMPROVE</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   CONFIG — edit these values as your data changes
+   ============================================================ */
+const RESUME_URL = "resume.pdf"; // place resume.pdf next to this file, or replace with a hosted URL
+
+const projectsData = [
+  {
+    title: "STM32WB55 Bluetooth Hardware Design",
+    featured: true,
+    description: "A 4-layer STM32WB55 Bluetooth Low Energy hardware design — one of my first dedicated RF PCB projects, referencing ST AN5165 as a key design guide.",
+    tech: ["KiCad 10","RF Hardware","PCB Design","STM32WB55"],
+    features: ["USB-C interface","U.FL RF output","Internal SMPS","Tag-Connect SWD programming","4-layer PCB architecture","Dedicated ground plane","RF return-path considerations","Antenna interface"],
+    categories: ["pcb","rf","embedded"],
+    icon: "fa-satellite-dish",
+    repo: "https://github.com/sufyan933/stm32wb55-bluetooth-hardware-design",
+    readme: "https://github.com/sufyan933/stm32wb55-bluetooth-hardware-design#readme"
+  },
+  {
+    title: "CS50P Final Project — Transistor Small-Signal Analyzer",
+    featured: true,
+    description: "A Python CLI tool for BJT and MOSFET amplifier analysis — my CS50P final project, connecting programming with electronics.",
+    tech: ["Python","Circuit Analysis","Transistor Modeling","CLI"],
+    features: ["Q-point analysis","Small-signal modeling","Voltage-gain calculations","Transistor amplifier calculations","Command-line workflow"],
+    categories: ["programming","ee"],
+    icon: "fa-wave-square",
+    repo: "https://github.com/sufyan933/CS50PFINALPROJECT-transistor-small-signal-analyzer",
+    readme: "https://github.com/sufyan933/CS50PFINALPROJECT-transistor-small-signal-analyzer#readme"
+  },
+  {
+    title: "ESP32-C3 IoT Sensor Board",
+    description: "Custom 4-layer IoT sensor board built around the ESP32-C3 with environmental sensing and onboard storage.",
+    tech: ["KiCad","ESP32-C3","IoT","Multi-layer PCB"],
+    features: ["Li-ion battery charging","BME280 environmental sensing","Ambient light sensing","Sound sensing","SPI flash","microSD storage","4-layer PCB architecture"],
+    categories: ["pcb","embedded"],
+    icon: "fa-microchip",
+    repo: "https://github.com/sufyan933/esp32-c3-iot-sensor-board",
+    readme: "https://github.com/sufyan933/esp32-c3-iot-sensor-board#readme"
+  },
+  {
+    title: "Arduino Radar Sensor System",
+    description: "A radar-style ultrasonic scanning system with real-time distance measurement and object detection.",
+    tech: ["Arduino","C/C++","HC-SR04","SG90"],
+    features: ["HC-SR04 ultrasonic sensor","SG90 servo motor","180° sweep scanning","Real-time distance measurement","Active buzzer feedback"],
+    categories: ["embedded","robotics"],
+    icon: "fa-radar",
+    repo: "https://github.com/sufyan933/radar_sensor_system",
+    readme: "https://github.com/sufyan933/radar_sensor_system#readme"
+  },
+  {
+    title: "Smart Door Lock — Arduino",
+    description: "Embedded smart door-lock system with keypad authentication, EEPROM password storage, and brute-force lockout protection.",
+    tech: ["Arduino","C++","Keypad","LCD","Servo"],
+    features: ["4×4 matrix keypad","16×2 LCD","Password authentication","EEPROM password storage","Password modification","Servo-based locking","Failed-attempt lockout"],
+    categories: ["embedded","programming"],
+    icon: "fa-lock",
+    repo: "https://github.com/sufyan933/smart-door-lock-arduino",
+    readme: "https://github.com/sufyan933/smart-door-lock-arduino#readme"
+  },
+  {
+    title: "5.9V AC-to-DC Regulated Power Supply",
+    description: "Complete regulated AC-to-DC power supply design with bridge rectification, filtering, and Zener regulation.",
+    tech: ["LTspice","Circuit Analysis","Power Electronics"],
+    features: ["Bridge rectifier","Capacitor filter","Zener diode regulator","Theoretical calculations","LTspice simulation","Ripple analysis"],
+    categories: ["power","ee"],
+    icon: "fa-bolt",
+    repo: "https://github.com/sufyan933/Design-and-Analysis-of-a-5.9V-AC-to-DC-Regulated-Power-Supply",
+    readme: "https://github.com/sufyan933/Design-and-Analysis-of-a-5.9V-AC-to-DC-Regulated-Power-Supply#readme"
+  },
+  {
+    title: "Residential House Wiring Project",
+    description: "Electrical house wiring and load-distribution analysis with simulation and safety considerations.",
+    tech: ["MATLAB","Multisim","Electrical Engineering"],
+    features: ["Residential load calculations","Power distribution","Electrical circuit simulation","UPS integration","Load/current calculations","Electrical safety considerations"],
+    categories: ["ee","power"],
+    icon: "fa-house-chimney",
+    repo: "https://github.com/sufyan933/HOUSE-WIRING-PROJECT",
+    readme: "https://github.com/sufyan933/HOUSE-WIRING-PROJECT#readme"
+  },
+  {
+    title: "Hotel Management System — C++",
+    description: "A console-based hotel management application demonstrating object-oriented design and data handling.",
+    tech: ["C++","OOP"],
+    features: ["Object-oriented programming","Data handling","Menu-driven application design","Programming fundamentals"],
+    categories: ["programming"],
+    icon: "fa-hotel",
+    repo: "https://github.com/sufyan933/Hotel-Management-System-CPP",
+    readme: "https://github.com/sufyan933/Hotel-Management-System-CPP#readme"
+  }
+];
+
+const miniProjectsData = [
+  "DC-DC Buck Converter PCB","DC-DC Boost Converter PCB","Smart Parking Assistant",
+  "Maglev Train Conceptual Pitch","Traffic Light Arduino System","USB-to-UART PCB"
+];
+
+const filters = [
+  { key:"all", label:"All" },
+  { key:"pcb", label:"PCB Design" },
+  { key:"rf", label:"RF / Wireless" },
+  { key:"embedded", label:"Embedded Systems" },
+  { key:"robotics", label:"Robotics" },
+  { key:"power", label:"Power Electronics" },
+  { key:"programming", label:"Programming" },
+  { key:"ee", label:"Electrical Engineering" }
+];
+
+const skillGroups = [
+  { title:"Programming", icon:"fa-code", skills:["C","C++","Python","Embedded C/C++"] },
+  { title:"PCB & Hardware", icon:"fa-microchip", skills:["KiCad","Altium Designer","Multi-layer PCB Design","Schematic Design","PCB Layout","Ground / Power Plane Design","RF PCB Design","Controlled Impedance","Signal Integrity","RF Return Paths","Antenna Matching"] },
+  { title:"Embedded Systems", icon:"fa-memory", skills:["Arduino","ESP32","ESP32-C3","STM32","Sensor Integration","Actuator Control","UART","SPI","I2C"] },
+  { title:"Robotics", icon:"fa-robot", skills:["ROS 2","Linux","URDF","Xacro","Gazebo","RViz2","Differential Drive","LiDAR","SLAM Fundamentals"] },
+  { title:"Electronics & Power", icon:"fa-bolt", skills:["LTspice","Multisim","MATLAB","Circuit Analysis","Analog Electronics","Digital Electronics","AC/DC Conversion","Rectifiers","Filtering","Zener Regulation","Buck Converters","Boost Converters","Load Analysis"] },
+  { title:"Development Tools", icon:"fa-terminal", skills:["Git","GitHub","VS Code","Linux","LaTeX","Overleaf"] }
+];
+
+const certData = [
+  { title:"CS50P: Introduction to Programming with Python", issuer:"Harvard University (CS50)", category:"Programming", featured:true, note:"Directly connects to the Transistor Small-Signal Analyzer project.", driveUrl:"ADD_GOOGLE_DRIVE_URL_HERE" },
+  { title:"Altium Designer PCB Design Course", issuer:"Altium", category:"PCB Design", driveUrl:"https://drive.google.com/drive/folders/1KbxiBZScBl1wezA8ksYgpGUUh3pX3S5L" },
+  { title:"PCB Design Course", issuer:"Simplilearn", category:"PCB Design", driveUrl:"https://drive.google.com/drive/folders/1KbxiBZScBl1wezA8ksYgpGUUh3pX3S5L" },
+  { title:"MATLAB Onramp", issuer:"MathWorks", category:"Simulation", driveUrl:"https://drive.google.com/drive/folders/1KbxiBZScBl1wezA8ksYgpGUUh3pX3S5L" },
+  { title:"Introduction to MATLAB", issuer:"Simplilearn", category:"Simulation", driveUrl:"https://drive.google.com/drive/folders/1KbxiBZScBl1wezA8ksYgpGUUh3pX3S5L" },
+  { title:"Machine Learning Bootcamp", issuer:"GDG PIEAS", category:"AI / ML", driveUrl:"https://drive.google.com/drive/folders/1KbxiBZScBl1wezA8ksYgpGUUh3pX3S5L" },
+  { title:"AI Bootcamp", issuer:"PIEAS AI Society", category:"AI / ML", driveUrl:"https://drive.google.com/drive/folders/1KbxiBZScBl1wezA8ksYgpGUUh3pX3S5L" },
+  { title:"AI Fluency Certificate", issuer:"Anthropic", category:"AI / ML", driveUrl:"https://drive.google.com/drive/folders/1KbxiBZScBl1wezA8ksYgpGUUh3pX3S5L" },
+  { title:"AI for Business Professionals", issuer:"HP LIFE", category:"Business & AI", driveUrl:"https://drive.google.com/drive/folders/1KbxiBZScBl1wezA8ksYgpGUUh3pX3S5L" },
+  { title:"AI Visibility Toolkit Crash Course", issuer:"Semrush", category:"Business & AI", driveUrl:"https://drive.google.com/drive/folders/1KbxiBZScBl1wezA8ksYgpGUUh3pX3S5L" }
+];
+
+/* ============================================================
+   RENDERERS
+   ============================================================ */
+function isRealUrl(u){ return typeof u === "string" && /^https?:\/\//.test(u); }
+
+// -- Skills --
+const skillsGrid = document.getElementById('skillsGrid');
+skillGroups.forEach((g,i)=>{
+  const el = document.createElement('div');
+  el.className = 'card-glow p-7 reveal';
+  el.innerHTML = `
+    <div class="flex items-center gap-3 mb-5">
+      <div class="icon-tile" style="width:44px;height:44px;"><i class="fas ${g.icon} text-white text-sm"></i></div>
+      <h3 class="text-base text-primary-c">${g.title}</h3>
+    </div>
+    <div class="flex flex-wrap gap-2">${g.skills.map(s=>`<span class="badge">${s}</span>`).join('')}</div>`;
+  skillsGrid.appendChild(el);
+});
+
+// -- Filter bar --
+const filterBar = document.getElementById('filterBar');
+filters.forEach(f=>{
+  const btn = document.createElement('button');
+  btn.className = 'btn-ghost' + (f.key==='all' ? ' active' : '');
+  btn.textContent = f.label;
+  btn.dataset.key = f.key;
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('#filterBar button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderProjects(f.key);
+  });
+  filterBar.appendChild(btn);
+});
+
+// -- Projects --
+const projectsGrid = document.getElementById('projectsGrid');
+const projectIcons = { "fa-radar":"fa-satellite-dish" }; // fallback for icons not in free FA set
+function renderProjects(filterKey){
+  projectsGrid.innerHTML = '';
+  const list = filterKey==='all' ? projectsData : projectsData.filter(p=>p.categories.includes(filterKey));
+  list.forEach((p,i)=>{
+    const icon = projectIcons[p.icon] || p.icon;
+    const card = document.createElement('div');
+    card.className = 'card-glow overflow-hidden reveal is-visible group' + (p.featured ? '' : '');
+    card.style.borderColor = p.featured ? 'rgba(0,217,255,0.35)' : '';
+    card.innerHTML = `
+      <div class="h-40 bg-gradient-to-br from-blue-950 to-violet-950/60 flex items-center justify-center relative overflow-hidden">
+        <i class="fas ${icon} text-5xl text-cyan-400/25 group-hover:scale-110 group-hover:text-cyan-400/40 transition duration-500"></i>
+        ${p.featured ? '<span class="absolute top-3 right-3 badge badge-green" style="margin:0;">Featured</span>' : ''}
+      </div>
+      <div class="p-7">
+        <h3 class="text-base text-primary-c mb-2">${p.title}</h3>
+        <p class="text-sm mb-4">${p.description}</p>
+        <div class="flex flex-wrap gap-2 mb-4">${p.tech.map(t=>`<span class="badge text-xs">${t}</span>`).join('')}</div>
+        <ul class="text-xs space-y-1 mb-5 text-text-muted">
+          ${p.features.slice(0,4).map(f=>`<li><i class="fas fa-check text-cyan-400 mr-2"></i>${f}</li>`).join('')}
+        </ul>
+        <div class="flex flex-wrap gap-2">
+          <a href="${p.repo}" target="_blank" rel="noopener" class="btn-ghost inline-flex items-center gap-1"><i class="fab fa-github"></i> Repository</a>
+          <a href="${p.readme}" target="_blank" rel="noopener" class="btn-ghost inline-flex items-center gap-1"><i class="fas fa-file-lines"></i> README</a>
+        </div>
+      </div>`;
+    projectsGrid.appendChild(card);
+  });
+}
+renderProjects('all');
+
+// -- Mini projects --
+const miniProjects = document.getElementById('miniProjects');
+miniProjectsData.forEach(t=>{
+  const s = document.createElement('span');
+  s.className = 'badge badge-violet text-sm reveal is-visible';
+  s.textContent = t;
+  miniProjects.appendChild(s);
+});
+
+// -- Certifications --
+const featuredCertEl = document.getElementById('featuredCert');
+const certGrid = document.getElementById('certGrid');
+certData.forEach(c=>{
+  const real = isRealUrl(c.driveUrl);
+  const btn = `<a href="${real ? c.driveUrl : '#'}" ${real ? 'target="_blank" rel="noopener"' : ''} class="cert-btn btn-ghost inline-flex items-center gap-2 mt-4" data-disabled="${!real}" ${!real ? 'onclick="event.preventDefault()" title="Certificate link coming soon"' : ''}><i class="fas fa-certificate"></i> View Certificate</a>`;
+  if(c.featured){
+    featuredCertEl.innerHTML = `
+      <div class="card-glow p-9 reveal" style="border-color:rgba(0,217,255,0.4);background:linear-gradient(135deg,rgba(0,217,255,0.06),rgba(139,107,255,0.06));">
+        <div class="flex flex-col md:flex-row items-start gap-6">
+          <div class="icon-tile" style="width:60px;height:60px;"><i class="fas fa-award text-white text-xl"></i></div>
+          <div>
+            <span class="badge badge-green mb-2">Featured Certification</span>
+            <h3 class="text-primary-c mb-1">${c.title}</h3>
+            <p class="text-sm text-cyan-400 font-semibold mb-2">${c.issuer} · ${c.category}</p>
+            <p class="text-sm text-text-muted">${c.note}</p>
+            ${btn}
+          </div>
+        </div>
+      </div>`;
+    return;
+  }
+  const el = document.createElement('div');
+  el.className = 'card-glow p-7 reveal';
+  el.innerHTML = `
+    <i class="fas fa-award text-xl text-cyan-400 mb-3"></i>
+    <h3 class="text-sm text-primary-c mb-1">${c.title}</h3>
+    <p class="text-xs text-text-muted mb-1">${c.issuer}</p>
+    <span class="badge text-xs" style="margin-top:4px;">${c.category}</span>
+    ${btn}`;
+  certGrid.appendChild(el);
+});
+
+/* ============================================================
+   INTERACTIONS
+   ============================================================ */
+// Theme toggle
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+const savedTheme = localStorage.getItem('theme') || 'dark';
+if(savedTheme==='light'){ body.classList.add('light-mode'); themeToggle.innerHTML='<i class="fas fa-sun"></i>'; }
+themeToggle.addEventListener('click', ()=>{
+  body.classList.toggle('light-mode');
+  const light = body.classList.contains('light-mode');
+  localStorage.setItem('theme', light?'light':'dark');
+  themeToggle.innerHTML = light ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+});
+
+// Mobile menu
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+mobileMenuBtn.addEventListener('click', ()=> mobileMenu.classList.toggle('hidden'));
+document.querySelectorAll('#mobileMenu a').forEach(a=>a.addEventListener('click', ()=>mobileMenu.classList.add('hidden')));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click', function(e){
+    const target = document.querySelector(this.getAttribute('href'));
+    if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth', block:'start'}); }
+  });
+});
+
+// Resume link
+document.querySelectorAll('a[href="M.SUFYAN_RESUME.pdf"]').forEach(a=> a.href = RESUME_URL);
+
+// Typewriter
+const phrases = [
+  "Electrical Engineering Student at PIEAS",
+  "PCB Designer",
+  "Embedded Systems Developer",
+  "RF & Wireless Hardware Enthusiast",
+  "ROS 2 & Robotics Enthusiast",
+  "Power Electronics Explorer",
+  "Building Hardware That Solves Real Problems"
+];
+const twEl = document.getElementById('typewriter');
+let pIdx=0, cIdx=0, deleting=false;
+function typeLoop(){
+  const current = phrases[pIdx];
+  if(!deleting){
+    cIdx++;
+    twEl.textContent = current.slice(0,cIdx);
+    if(cIdx===current.length){ deleting=true; setTimeout(typeLoop,1600); return; }
+  } else {
+    cIdx--;
+    twEl.textContent = current.slice(0,cIdx);
+    if(cIdx===0){ deleting=false; pIdx=(pIdx+1)%phrases.length; }
+  }
+  setTimeout(typeLoop, deleting?35:65);
+}
+typeLoop();
+
+// Contact form (FormSubmit)
+const contactForm = document.getElementById('contactForm');
+const formStatus = document.getElementById('formStatus');
+contactForm.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const formData = new FormData(contactForm);
+  try{
+    const res = await fetch('https://formsubmit.co/ajax/arhamsufyan5@gmail.com', { method:'POST', body:formData });
+    formStatus.classList.remove('hidden');
+    if(res.ok){
+      formStatus.style.borderColor = 'var(--accent-cyan)';
+      formStatus.style.color = 'var(--accent-cyan)';
+      formStatus.innerHTML = '<i class="fas fa-check-circle mr-2"></i>Message sent successfully — I\'ll get back to you soon.';
+      contactForm.reset();
+    } else { throw new Error('failed'); }
+  }catch(err){
+    formStatus.classList.remove('hidden');
+    formStatus.style.borderColor = '#ff6464';
+    formStatus.style.color = '#ff6464';
+    formStatus.innerHTML = '<i class="fas fa-triangle-exclamation mr-2"></i>Something went wrong — please email directly at arhamsufyan5@gmail.com.';
+  }
+  setTimeout(()=>formStatus.classList.add('hidden'), 6000);
+});
+
+// GitHub live stats
+(async ()=>{
+  const el = document.getElementById('githubStats');
+  try{
+    const res = await fetch('https://api.github.com/users/sufyan933');
+    if(!res.ok) throw new Error('rate limited');
+    const data = await res.json();
+    el.innerHTML = `
+      <div><span class="text-cyan-400 font-bold text-lg">${data.public_repos ?? '—'}</span><br>Public Repos</div>
+      <div><span class="text-cyan-400 font-bold text-lg">${data.followers ?? '—'}</span><br>Followers</div>`;
+  }catch(err){
+    el.innerHTML = `<span class="text-text-muted">Live stats unavailable right now — <a href="https://github.com/sufyan933" target="_blank" rel="noopener" class="text-cyan-400 underline">view profile directly</a>.</span>`;
+  }
+})();
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){ entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
+  });
+}, { threshold:0.12, rootMargin:'0px 0px -80px 0px' });
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// Navbar shadow + active link on scroll
+const navEl = document.querySelector('nav');
+const navLinks = document.querySelectorAll('.nav-link');
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', ()=>{
+  navEl.style.boxShadow = window.pageYOffset>50 ? '0 10px 30px rgba(0,217,255,0.1)' : 'none';
+  let current='';
+  sections.forEach(s=>{ if(pageYOffset >= s.offsetTop - 200) current = s.getAttribute('id'); });
+  navLinks.forEach(l=>{
+    l.classList.toggle('active-link', l.getAttribute('href') === `#${current}`);
+  });
+});
+</script>
 </body>
 </html>
