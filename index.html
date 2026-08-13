@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Muhammad Sufyan | Electrical Engineering — PCB Design, RF Hardware & Robotics</title>
-<meta name="description" content="Portfolio of Muhammad Sufyan, B.S. Electrical Engineering student at PIEAS (CGPA 3.99/4.00) specializing in PCB design, RF & wireless hardware, embedded systems, power electronics, and ROS 2 robotics.">
+<meta name="description" content="Portfolio of Muhammad Sufyan, 2nd-year B.S. Electrical Engineering student at PIEAS (CGPA 3.99/4.00) specializing in PCB design, RF & wireless hardware, embedded systems, power electronics, and ROS 2 robotics.">
 <meta name="keywords" content="Muhammad Sufyan, Electrical Engineering, PIEAS, PCB Design, KiCad, Altium, Embedded Systems, RF Hardware, ROS 2, Robotics, Power Electronics, STM32, ESP32">
 <meta name="author" content="Muhammad Sufyan">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Muhammad Sufyan | Electrical Engineering — PCB Design, RF Hardware & Robotics">
-<meta property="og:description" content="B.S. Electrical Engineering student at PIEAS building PCBs, RF hardware, embedded systems, and robotics. Concept → Schematic → Simulation → PCB → Firmware → Testing.">
+<meta property="og:description" content="2nd-year B.S. Electrical Engineering student at PIEAS building PCBs, RF hardware, embedded systems, and robotics. Concept → Schematic → Simulation → PCB → Firmware → Testing.">
 <meta property="og:site_name" content="Muhammad Sufyan — Portfolio">
 
 <!-- Twitter -->
@@ -34,22 +34,76 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Syne:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+/* ==========================================================
+   THEME ENGINE
+   5 named hardware-inspired palettes, each themeable in
+   dark and light mode via [data-theme] on <body>.
+   ========================================================== */
 :root{
   --primary-dark:#080b16;
   --secondary-dark:#0d1226;
   --tertiary-dark:#141b38;
-  --accent-cyan:#00d9ff;
-  --accent-blue:#0099ff;
-  --accent-violet:#8b6bff;
-  --accent-green:#00e6a8;
   --text-primary:#ffffff;
   --text-secondary:#aab2d4;
   --text-muted:#7480a8;
   --border-color:#1e2a4a;
   --card-bg-dark:rgba(10,14,28,0.78);
   --glass-bg:rgba(13,18,38,0.65);
+
+  /* fixed semantic success color — stays consistent across all themes */
+  --accent-green:#00e6a8;
+  --accent-green-rgb:0,230,168;
+
+  /* Theme: Circuit Cyan (default) */
+  --accent-cyan:#00d9ff;
+  --accent-blue:#0099ff;
+  --accent-violet:#8b6bff;
+  --accent-cyan-rgb:0,217,255;
+  --accent-blue-rgb:0,153,255;
+  --accent-violet-rgb:139,107,255;
   --shadow-glow:rgba(0,217,255,0.16);
 }
+
+/* ---- Dark-mode theme overrides ---- */
+[data-theme="phosphor"]{
+  --accent-cyan:#39ff88; --accent-blue:#00e0c0; --accent-violet:#ffd23f;
+  --accent-cyan-rgb:57,255,136; --accent-blue-rgb:0,224,192; --accent-violet-rgb:255,210,63;
+  --shadow-glow:rgba(57,255,136,0.16);
+}
+[data-theme="solder"]{
+  --accent-cyan:#ff9d42; --accent-blue:#ff5f6d; --accent-violet:#ffd23f;
+  --accent-cyan-rgb:255,157,66; --accent-blue-rgb:255,95,109; --accent-violet-rgb:255,210,63;
+  --shadow-glow:rgba(255,157,66,0.16);
+}
+[data-theme="spectrum"]{
+  --accent-cyan:#c084fc; --accent-blue:#f472b6; --accent-violet:#60a5fa;
+  --accent-cyan-rgb:192,132,252; --accent-blue-rgb:244,114,182; --accent-violet-rgb:96,165,250;
+  --shadow-glow:rgba(192,132,252,0.16);
+}
+[data-theme="power"]{
+  --accent-cyan:#ff4d6d; --accent-blue:#ff8a5c; --accent-violet:#ffd23f;
+  --accent-cyan-rgb:255,77,109; --accent-blue-rgb:255,138,92; --accent-violet-rgb:255,210,63;
+  --shadow-glow:rgba(255,77,109,0.16);
+}
+
+/* ---- Light mode base (Circuit) ---- */
+body.light-mode{
+  --primary-dark:#f6f7fb;
+  --secondary-dark:#ffffff;
+  --tertiary-dark:#eef1f8;
+  --accent-green:#049c76; --accent-green-rgb:4,156,118;
+  --accent-cyan:#0072c6; --accent-blue:#0057a3; --accent-violet:#5b3fd6;
+  --accent-cyan-rgb:0,114,198; --accent-blue-rgb:0,87,163; --accent-violet-rgb:91,63,214;
+  --text-primary:#0f1424; --text-secondary:#3d4665; --text-muted:#6b7494;
+  --border-color:#d9deee; --card-bg-dark:rgba(255,255,255,0.9); --glass-bg:rgba(246,247,251,0.85);
+  --shadow-glow:rgba(0,114,198,0.12);
+}
+/* ---- Light mode + theme combinations ---- */
+body.light-mode[data-theme="phosphor"]{--accent-cyan:#0d8a4c;--accent-blue:#067a6b;--accent-violet:#9c7a00;--accent-cyan-rgb:13,138,76;--accent-blue-rgb:6,122,107;--accent-violet-rgb:156,122,0;--shadow-glow:rgba(13,138,76,.12);}
+body.light-mode[data-theme="solder"]{--accent-cyan:#c9591a;--accent-blue:#c62839;--accent-violet:#9c6f00;--accent-cyan-rgb:201,89,26;--accent-blue-rgb:198,40,57;--accent-violet-rgb:156,111,0;--shadow-glow:rgba(201,89,26,.12);}
+body.light-mode[data-theme="spectrum"]{--accent-cyan:#7c3aed;--accent-blue:#be185d;--accent-violet:#1d4ed8;--accent-cyan-rgb:124,58,237;--accent-blue-rgb:190,24,93;--accent-violet-rgb:29,78,216;--shadow-glow:rgba(124,58,237,.12);}
+body.light-mode[data-theme="power"]{--accent-cyan:#c81e3a;--accent-blue:#c2410c;--accent-violet:#9c6f00;--accent-cyan-rgb:200,30,58;--accent-blue-rgb:194,65,12;--accent-violet-rgb:156,111,0;--shadow-glow:rgba(200,30,58,.12);}
+
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{
@@ -58,22 +112,6 @@ body{
   color:var(--text-secondary);
   transition:background-color .4s ease,color .4s ease;
   overflow-x:hidden;
-}
-body.light-mode{
-  --primary-dark:#f6f7fb;
-  --secondary-dark:#ffffff;
-  --tertiary-dark:#eef1f8;
-  --accent-cyan:#0072c6;
-  --accent-blue:#0057a3;
-  --accent-violet:#5b3fd6;
-  --accent-green:#049c76;
-  --text-primary:#0f1424;
-  --text-secondary:#3d4665;
-  --text-muted:#6b7494;
-  --border-color:#d9deee;
-  --card-bg-dark:rgba(255,255,255,0.9);
-  --glass-bg:rgba(246,247,251,0.85);
-  --shadow-glow:rgba(0,114,198,0.12);
 }
 h1,h2,h3,h4{font-family:'Syne',sans-serif;font-weight:700;letter-spacing:-0.5px;color:var(--text-primary);}
 h1{font-size:3.4rem;line-height:1.08;}
@@ -86,68 +124,84 @@ h3{font-size:1.3rem;line-height:1.35;}
 body::before{
   content:'';position:fixed;inset:0;
   background:
-    radial-gradient(circle at 15% 20%,rgba(0,217,255,0.07) 0%,transparent 45%),
-    radial-gradient(circle at 85% 75%,rgba(139,107,255,0.07) 0%,transparent 45%),
+    radial-gradient(circle at 15% 20%,rgba(var(--accent-cyan-rgb),0.08) 0%,transparent 45%),
+    radial-gradient(circle at 85% 75%,rgba(var(--accent-violet-rgb),0.08) 0%,transparent 45%),
     linear-gradient(160deg,var(--primary-dark) 0%,var(--secondary-dark) 55%,var(--primary-dark) 100%);
-  z-index:-3;
+  z-index:-3;transition:background .4s ease;
 }
 .pcb-grid{
   content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;
   background-image:
-    linear-gradient(rgba(0,217,255,0.045) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(0,217,255,0.045) 1px,transparent 1px);
+    linear-gradient(rgba(var(--accent-cyan-rgb),0.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(var(--accent-cyan-rgb),0.045) 1px,transparent 1px);
   background-size:44px 44px;
   mask-image:radial-gradient(circle at 50% 20%,black,transparent 80%);
 }
-body.light-mode .pcb-grid{
-  background-image:
-    linear-gradient(rgba(0,90,160,0.05) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(0,90,160,0.05) 1px,transparent 1px);
-}
+
+/* ===== Ambient color blobs (signature depth layer) ===== */
+.ambient-blob{position:absolute;border-radius:50%;filter:blur(105px);opacity:.22;pointer-events:none;z-index:0;animation:floatBlob 12s ease-in-out infinite;}
+body.light-mode .ambient-blob{opacity:.14;}
+@keyframes floatBlob{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(24px,-28px) scale(1.08);}}
+
+/* ===== Scroll progress ===== */
+#scrollProgress{position:fixed;top:0;left:0;height:3px;width:0%;z-index:70;background:linear-gradient(90deg,var(--accent-cyan),var(--accent-violet),var(--accent-blue));transition:width .1s linear;box-shadow:0 0 12px rgba(var(--accent-cyan-rgb),0.6);}
 
 /* ===== Animations ===== */
-@keyframes gradientFlow{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
 @keyframes nodeGlow{0%,100%{box-shadow:0 0 8px var(--accent-cyan);}50%{box-shadow:0 0 22px var(--accent-cyan);}}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(36px);}to{opacity:1;transform:translateY(0);}}
 @keyframes dashFlow{to{stroke-dashoffset:-400;}}
 @keyframes blink{0%,49%{opacity:1;}50%,100%{opacity:0;}}
 @keyframes floatY{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
 @keyframes pulseDot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(1.4);}}
+@keyframes spinRing{to{transform:rotate(360deg);}}
 
 .reveal{opacity:0;transform:translateY(36px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);}
 .reveal.is-visible{opacity:1;transform:translateY(0);}
 
 /* ===== Glass & cards ===== */
-.glass{background:var(--glass-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(0,217,255,0.12);}
+.glass{background:var(--glass-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(var(--accent-cyan-rgb),0.12);}
 .card-glow{position:relative;background:var(--card-bg-dark);border:1px solid var(--border-color);border-radius:16px;transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s ease,border-color .35s ease;}
-.card-glow:hover{transform:translateY(-8px);box-shadow:0 22px 46px var(--shadow-glow);border-color:rgba(0,217,255,0.35);}
-.icon-tile{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,var(--accent-cyan),var(--accent-blue));display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.card-glow:hover{transform:translateY(-8px);box-shadow:0 22px 46px var(--shadow-glow);border-color:rgba(var(--accent-cyan-rgb),0.35);}
+.icon-tile{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,var(--accent-cyan),var(--accent-blue));display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 8px 20px rgba(var(--accent-cyan-rgb),0.25);}
 
 .glow-text{background:linear-gradient(135deg,var(--accent-cyan) 0%,var(--accent-violet) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+/* ===== Custom color-utility classes (theme-reactive replacements for hardcoded Tailwind colors) ===== */
+.t-accent{color:var(--accent-cyan);}
+.t-accent-2{color:var(--accent-violet);}
+.t-accent-hover{transition:color .25s ease;}
+.t-accent-hover:hover{color:var(--accent-cyan);}
+.grad-accent{background:linear-gradient(135deg,var(--accent-cyan),var(--accent-violet));}
+.border-accent-soft{border-color:rgba(var(--accent-cyan-rgb),0.18)!important;}
+.bg-accent-soft{background:rgba(var(--accent-cyan-rgb),0.08);}
+.icon-faint{color:rgba(var(--accent-cyan-rgb),0.28);transition:color .4s ease,transform .4s ease;}
+.group:hover .icon-faint{color:rgba(var(--accent-cyan-rgb),0.5);transform:scale(1.08);}
+.trace-strip{height:4px;width:100%;background:linear-gradient(90deg,var(--accent-cyan),var(--accent-violet),var(--accent-blue));}
 
 /* ===== Eyebrow / register labels (signature motif) ===== */
 .eyebrow{
   font-family:'JetBrains Mono',monospace;font-size:.78rem;font-weight:600;letter-spacing:2px;
   color:var(--accent-cyan);text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;
-  padding:5px 14px;border:1px solid rgba(0,217,255,0.3);border-radius:999px;background:rgba(0,217,255,0.06);
+  padding:5px 14px;border:1px solid rgba(var(--accent-cyan-rgb),0.3);border-radius:999px;background:rgba(var(--accent-cyan-rgb),0.06);
 }
 .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent-green);animation:pulseDot 2s ease-in-out infinite;}
 .section-head{margin-bottom:3.2rem;}
-.section-head h2{margin-top:14px;}
+.section-head h2{margin-top:14px;position:relative;display:inline-block;}
+.section-head .underline-trace{width:64px;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--accent-cyan),var(--accent-violet));margin:16px auto 0;}
 
 /* ===== Buttons ===== */
 .btn-primary{background:linear-gradient(135deg,var(--accent-cyan),var(--accent-blue));color:#04101c;font-weight:700;padding:13px 30px;border-radius:10px;border:none;cursor:pointer;transition:.3s cubic-bezier(.34,1.56,.64,1);box-shadow:0 10px 28px var(--shadow-glow);font-size:.92rem;}
 .btn-primary:hover{transform:translateY(-4px);box-shadow:0 18px 40px var(--shadow-glow);}
 .btn-secondary{border:1.5px solid var(--accent-cyan);color:var(--accent-cyan);background:transparent;font-weight:700;padding:11px 28px;border-radius:10px;cursor:pointer;transition:.3s cubic-bezier(.34,1.56,.64,1);font-size:.92rem;}
-.btn-secondary:hover{background:rgba(0,217,255,0.1);transform:translateY(-4px);}
+.btn-secondary:hover{background:rgba(var(--accent-cyan-rgb),0.1);transform:translateY(-4px);}
 .btn-ghost{border:1.5px solid var(--border-color);color:var(--text-secondary);background:transparent;font-weight:600;padding:9px 18px;border-radius:8px;cursor:pointer;transition:.25s ease;font-size:.82rem;}
 .btn-ghost:hover{border-color:var(--accent-cyan);color:var(--accent-cyan);}
 .btn-ghost.active{border-color:var(--accent-cyan);color:var(--primary-dark);background:var(--accent-cyan);}
 
 /* ===== Badges/tags ===== */
-.badge{display:inline-block;padding:6px 14px;border-radius:8px;font-size:.78rem;font-weight:600;background:rgba(0,217,255,0.1);border:1px solid rgba(0,217,255,0.35);color:var(--accent-cyan);margin:4px 6px 4px 0;letter-spacing:.3px;}
-.badge-violet{background:rgba(139,107,255,0.1);border-color:rgba(139,107,255,0.4);color:var(--accent-violet);}
-.badge-green{background:rgba(0,230,168,0.1);border-color:rgba(0,230,168,0.4);color:var(--accent-green);}
+.badge{display:inline-block;padding:6px 14px;border-radius:8px;font-size:.78rem;font-weight:600;background:rgba(var(--accent-cyan-rgb),0.1);border:1px solid rgba(var(--accent-cyan-rgb),0.35);color:var(--accent-cyan);margin:4px 6px 4px 0;letter-spacing:.3px;}
+.badge-violet{background:rgba(var(--accent-violet-rgb),0.1);border-color:rgba(var(--accent-violet-rgb),0.4);color:var(--accent-violet);}
+.badge-green{background:rgba(var(--accent-green-rgb),0.1);border-color:rgba(var(--accent-green-rgb),0.4);color:var(--accent-green);}
 
 /* ===== Scrollbar ===== */
 ::-webkit-scrollbar{width:10px;}
@@ -172,7 +226,7 @@ body.light-mode .pcb-grid{
 /* ===== Inputs ===== */
 .glow-input{background:var(--card-bg-dark);border:1.5px solid var(--border-color);color:var(--text-primary);padding:13px 16px;border-radius:10px;transition:.3s ease;font-size:.93rem;width:100%;}
 .glow-input::placeholder{color:var(--text-muted);}
-.glow-input:focus{outline:none;border-color:var(--accent-cyan);box-shadow:0 0 0 3px rgba(0,217,255,0.15);}
+.glow-input:focus{outline:none;border-color:var(--accent-cyan);box-shadow:0 0 0 3px rgba(var(--accent-cyan-rgb),0.15);}
 
 /* ===== Typewriter ===== */
 .typewriter-cursor{display:inline-block;width:3px;background:var(--accent-cyan);margin-left:3px;animation:blink 1s step-start infinite;}
@@ -181,13 +235,27 @@ body.light-mode .pcb-grid{
 .hero-trace{position:absolute;inset:-40px;pointer-events:none;}
 .hero-trace path{fill:none;stroke:url(#traceGrad);stroke-width:1.6;stroke-dasharray:6 10;animation:dashFlow 6s linear infinite;opacity:.55;}
 .hero-node{animation:pulseDot 2.4s ease-in-out infinite;}
-.photo-frame{animation:floatY 6s ease-in-out infinite;}
+.photo-frame{animation:floatY 6s ease-in-out infinite;position:relative;}
+.photo-ring{background:conic-gradient(from 0deg,var(--accent-cyan),var(--accent-violet),var(--accent-blue),var(--accent-cyan));}
+.photo-ring::before{content:'';position:absolute;inset:-6px;border-radius:1.3rem;background:conic-gradient(from 0deg,var(--accent-cyan),var(--accent-violet),var(--accent-blue),var(--accent-cyan));filter:blur(10px);opacity:.65;z-index:-1;animation:spinRing 7s linear infinite;}
 
 /* ===== Nav active link ===== */
 nav a.active-link{color:var(--accent-cyan)!important;}
 
 /* ===== Certificate card disabled state ===== */
 .cert-btn[data-disabled="true"]{opacity:.5;cursor:not-allowed;}
+
+/* ===== Theme picker ===== */
+#themePickerMenu{background:var(--glass-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);}
+.theme-swatch{width:34px;height:34px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:.25s ease;position:relative;}
+.theme-swatch:hover{transform:scale(1.12);}
+.theme-swatch.active-swatch{border-color:var(--text-primary);box-shadow:0 0 0 3px rgba(var(--accent-cyan-rgb),0.3);}
+
+/* ===== Accessibility ===== */
+:focus-visible{outline:2px solid var(--accent-cyan);outline-offset:3px;border-radius:4px;}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important;}
+}
 
 @media(max-width:768px){
   h1{font-size:2.3rem;}
@@ -196,6 +264,7 @@ nav a.active-link{color:var(--accent-cyan)!important;}
 </style>
 </head>
 <body>
+<div id="scrollProgress"></div>
 <div class="pcb-grid"></div>
 
 <!-- ============ NAVBAR ============ -->
@@ -203,7 +272,7 @@ nav a.active-link{color:var(--accent-cyan)!important;}
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <a href="#home" class="flex items-center space-x-3">
-        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-400 to-violet-500 flex items-center justify-center">
+        <div class="w-9 h-9 rounded-lg grad-accent flex items-center justify-center">
           <i class="fas fa-microchip text-white text-sm"></i>
         </div>
         <span class="text-base font-bold text-primary-c hidden sm:inline" style="font-family:'Syne',sans-serif;">Muhammad Sufyan</span>
@@ -221,10 +290,20 @@ nav a.active-link{color:var(--accent-cyan)!important;}
       </div>
 
       <div class="flex items-center gap-2">
-        <button id="themeToggle" aria-label="Toggle light and dark theme" class="p-2.5 rounded-lg glass border border-cyan-600/40 hover:border-cyan-400 transition">
+        <div class="relative">
+          <button id="themePickerBtn" aria-label="Choose color theme" aria-haspopup="true" aria-expanded="false" class="p-2.5 rounded-lg glass border border-accent-soft t-accent-hover transition">
+            <i class="fas fa-palette"></i>
+          </button>
+          <div id="themePickerMenu" class="hidden absolute right-0 mt-3 w-60 rounded-xl p-4 shadow-2xl z-50" style="border:1px solid var(--border-color);">
+            <p class="mono text-[10px] uppercase tracking-wider text-text-muted mb-3">Circuit Theme</p>
+            <div class="grid grid-cols-5 gap-3" id="themeSwatches"></div>
+            <p id="themeNameLabel" class="mono text-[10px] uppercase tracking-wider mt-3 t-accent text-center">Circuit Cyan</p>
+          </div>
+        </div>
+        <button id="themeToggle" aria-label="Toggle light and dark theme" class="p-2.5 rounded-lg glass border border-accent-soft t-accent-hover transition">
           <i class="fas fa-moon"></i>
         </button>
-        <button id="mobileMenuBtn" aria-label="Open menu" class="lg:hidden p-2.5 rounded-lg glass border border-cyan-600/40">
+        <button id="mobileMenuBtn" aria-label="Open menu" class="lg:hidden p-2.5 rounded-lg glass border border-accent-soft">
           <i class="fas fa-bars"></i>
         </button>
       </div>
@@ -245,6 +324,8 @@ nav a.active-link{color:var(--accent-cyan)!important;}
 
 <!-- ============ HERO ============ -->
 <section id="home" class="min-h-screen flex items-center pt-24 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+  <div class="ambient-blob" style="width:440px;height:440px;top:-8%;left:-8%;background:var(--accent-cyan);"></div>
+  <div class="ambient-blob" style="width:400px;height:400px;bottom:-12%;right:-6%;background:var(--accent-violet);animation-delay:2s;"></div>
   <div class="max-w-7xl mx-auto w-full relative z-10">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
 
@@ -257,20 +338,20 @@ nav a.active-link{color:var(--accent-cyan)!important;}
             Muhammad<br><span class="glow-text">Sufyan</span>
           </h1>
           <p class="text-lg md:text-xl font-semibold text-primary-c">
-            Electrical Engineering Student at PIEAS
+            2nd-Year Electrical Engineering Student at PIEAS
           </p>
-          <p class="mono text-cyan-400 text-sm md:text-base mt-3 min-h-[1.6em]">
+          <p class="mono t-accent text-sm md:text-base mt-3 min-h-[1.6em]">
             <span id="typewriter"></span><span class="typewriter-cursor">&nbsp;</span>
           </p>
         </div>
 
         <p class="text-base leading-relaxed max-w-xl">
-          B.S. Electrical Engineering student focused on practical engineering across
-          <span class="text-cyan-400 font-semibold">PCB design</span>,
-          <span class="text-cyan-400 font-semibold">embedded systems</span>,
-          <span class="text-cyan-400 font-semibold">RF &amp; wireless hardware</span>,
-          <span class="text-cyan-400 font-semibold">robotics</span>, and
-          <span class="text-cyan-400 font-semibold">power electronics</span> —
+          2nd-year B.S. Electrical Engineering student focused on practical engineering across
+          <span class="t-accent font-semibold">PCB design</span>,
+          <span class="t-accent font-semibold">embedded systems</span>,
+          <span class="t-accent font-semibold">RF &amp; wireless hardware</span>,
+          <span class="t-accent font-semibold">robotics</span>, and
+          <span class="t-accent font-semibold">power electronics</span> —
           currently carrying a <span class="text-primary-c font-bold">3.99&nbsp;/&nbsp;4.00 CGPA</span>.
         </p>
 
@@ -283,11 +364,11 @@ nav a.active-link{color:var(--accent-cyan)!important;}
           </a>
         </div>
 
-        <div class="flex items-center gap-3 pt-6 border-t border-cyan-900/30">
+        <div class="flex items-center gap-3 pt-6 border-t border-accent-soft">
           <span class="mono text-xs text-text-muted mr-1">CONNECT:</span>
-          <a href="https://www.linkedin.com/in/muhammad-sufyan-6214752b8" target="_blank" rel="noopener" aria-label="LinkedIn" class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:border-cyan-400 transition"><i class="fab fa-linkedin text-cyan-400"></i></a>
-          <a href="https://github.com/sufyan933" target="_blank" rel="noopener" aria-label="GitHub" class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:border-cyan-400 transition"><i class="fab fa-github text-cyan-400"></i></a>
-          <a href="mailto:arhamsufyan5@gmail.com" aria-label="Email" class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:border-cyan-400 transition"><i class="fas fa-envelope text-cyan-400"></i></a>
+          <a href="https://www.linkedin.com/in/muhammad-sufyan-6214752b8" target="_blank" rel="noopener" aria-label="LinkedIn" class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:border-accent-soft transition"><i class="fab fa-linkedin t-accent"></i></a>
+          <a href="https://github.com/sufyan933" target="_blank" rel="noopener" aria-label="GitHub" class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:border-accent-soft transition"><i class="fab fa-github t-accent"></i></a>
+          <a href="mailto:arhamsufyan5@gmail.com" aria-label="Email" class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:border-accent-soft transition"><i class="fas fa-envelope t-accent"></i></a>
         </div>
       </div>
 
@@ -297,8 +378,8 @@ nav a.active-link{color:var(--accent-cyan)!important;}
           <svg class="hero-trace" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <defs>
               <linearGradient id="traceGrad" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#00d9ff"/>
-                <stop offset="100%" stop-color="#8b6bff"/>
+                <stop offset="0%" style="stop-color:var(--accent-cyan)"/>
+                <stop offset="100%" style="stop-color:var(--accent-violet)"/>
               </linearGradient>
             </defs>
             <path d="M20,250 H120 M20,250 v-80 h60"/>
@@ -306,16 +387,16 @@ nav a.active-link{color:var(--accent-cyan)!important;}
             <path d="M250,20 V120 M250,20 h-80 v40"/>
             <path d="M250,480 V380 M250,480 h80 v-40"/>
             <path d="M60,60 L150,150 M440,60 L350,150 M60,440 L150,350 M440,440 L350,350"/>
-            <circle class="hero-node" cx="120" cy="250" r="5" fill="#00d9ff"/>
-            <circle class="hero-node" cx="380" cy="250" r="5" fill="#8b6bff"/>
-            <circle class="hero-node" cx="250" cy="120" r="5" fill="#00e6a8"/>
-            <circle class="hero-node" cx="250" cy="380" r="5" fill="#00d9ff"/>
+            <circle class="hero-node" cx="120" cy="250" r="5" style="fill:var(--accent-cyan)"/>
+            <circle class="hero-node" cx="380" cy="250" r="5" style="fill:var(--accent-violet)"/>
+            <circle class="hero-node" cx="250" cy="120" r="5" style="fill:var(--accent-green)"/>
+            <circle class="hero-node" cx="250" cy="380" r="5" style="fill:var(--accent-blue)"/>
           </svg>
 
-          <div class="photo-frame absolute inset-6 p-1.5 rounded-2xl bg-gradient-to-br from-cyan-400 via-blue-500 to-violet-500">
+          <div class="photo-frame absolute inset-6 p-1.5 rounded-2xl photo-ring">
             <div class="image-preview-container relative w-full h-full rounded-2xl overflow-hidden bg-slate-900 group">
               <img id="profilePhoto" src="myphoto.jpg" alt="Portrait of Muhammad Sufyan" class="w-full h-full object-cover object-center"
-                   onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900',innerHTML:'&lt;span style=&quot;font-family:Syne,sans-serif;font-size:4rem;font-weight:800;background:linear-gradient(135deg,%2300d9ff,%238b6bff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;&quot;&gt;MS&lt;/span&gt;'}))">
+                   onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900',innerHTML:'&lt;span style=&quot;font-family:Syne,sans-serif;font-size:4rem;font-weight:800;background:linear-gradient(135deg,var(--accent-cyan),var(--accent-violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;&quot;&gt;MS&lt;/span&gt;'}))">
             </div>
           </div>
         </div>
@@ -326,25 +407,27 @@ nav a.active-link{color:var(--accent-cyan)!important;}
 </section>
 
 <!-- ============ ABOUT ============ -->
-<section id="about" class="py-24 px-4 sm:px-6 lg:px-8">
-  <div class="max-w-7xl mx-auto">
+<section id="about" class="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+  <div class="ambient-blob" style="width:360px;height:360px;top:10%;right:-8%;background:var(--accent-blue);"></div>
+  <div class="max-w-7xl mx-auto relative z-10">
     <div class="section-head text-center">
       <span class="eyebrow"><span class="dot"></span> 0x01 · ABOUT</span>
       <h2>About <span class="glow-text">Me</span></h2>
+      <div class="underline-trace"></div>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-10">
       <div class="lg:col-span-3 card-glow p-8 reveal">
         <p class="text-base leading-relaxed mb-5">
-          I'm a B.S. Electrical Engineering student at <span class="text-cyan-400 font-semibold">PIEAS</span>, focused on building
+          I'm a <span class="t-accent font-semibold">2nd-year</span> B.S. Electrical Engineering student at <span class="t-accent font-semibold">PIEAS</span>, focused on building
           practical skills across PCB design, embedded systems, RF &amp; wireless hardware, robotics, power electronics, and circuit analysis.
           I enjoy taking engineering concepts from schematics and simulations all the way to working hardware.
         </p>
         <p class="text-base leading-relaxed">
-          I'm currently expanding my experience in <span class="text-cyan-400 font-semibold">ROS 2 and robotics</span> while developing
+          I'm currently expanding my experience in <span class="t-accent font-semibold">ROS 2 and robotics</span> while developing
           deeper skills in RF PCB design, wireless hardware, power electronics, and modern microcontroller platforms.
         </p>
-        <div class="mt-7 pt-6 border-t border-cyan-900/30 flex flex-wrap items-center gap-3 mono text-xs">
+        <div class="mt-7 pt-6 border-t border-accent-soft flex flex-wrap items-center gap-3 mono text-xs">
           <span class="badge">CONCEPT</span><i class="fas fa-arrow-right text-text-muted"></i>
           <span class="badge">SCHEMATIC</span><i class="fas fa-arrow-right text-text-muted"></i>
           <span class="badge">SIMULATION</span><i class="fas fa-arrow-right text-text-muted"></i>
@@ -355,18 +438,18 @@ nav a.active-link{color:var(--accent-cyan)!important;}
         </div>
       </div>
 
-      <div class="lg:col-span-2 card-glow p-8 reveal flex flex-col justify-between" style="border-color:rgba(0,217,255,0.35);">
+      <div class="lg:col-span-2 card-glow p-8 reveal flex flex-col justify-between" style="border-color:rgba(var(--accent-cyan-rgb),0.35);">
         <div>
-          <i class="fas fa-quote-left text-2xl text-cyan-400 mb-4"></i>
+          <i class="fas fa-quote-left text-2xl t-accent mb-4"></i>
           <p class="text-lg text-primary-c font-medium leading-snug" style="font-family:'Syne',sans-serif;">
             "The best way to understand hardware is to build it."
           </p>
         </div>
         <div class="mt-6 flex items-center gap-2 mono text-xs text-text-muted">
-          <span class="text-cyan-400 font-bold">BUILD</span> →
-          <span class="text-cyan-400 font-bold">TEST</span> →
-          <span class="text-cyan-400 font-bold">DEBUG</span> →
-          <span class="text-cyan-400 font-bold">IMPROVE</span>
+          <span class="t-accent font-bold">BUILD</span> →
+          <span class="t-accent font-bold">TEST</span> →
+          <span class="t-accent font-bold">DEBUG</span> →
+          <span class="t-accent font-bold">IMPROVE</span>
         </div>
       </div>
     </div>
@@ -379,29 +462,29 @@ nav a.active-link{color:var(--accent-cyan)!important;}
         <p class="text-xs text-text-muted mt-1">Hometown: Attock, Punjab</p>
       </div>
       <div class="card-glow p-7 reveal">
-        <div class="icon-tile mb-5"><i class="fas fa-satellite-dish text-white"></i></div>
+        <div class="icon-tile mb-5" style="background:linear-gradient(135deg,var(--accent-violet),var(--accent-cyan));"><i class="fas fa-satellite-dish text-white"></i></div>
         <h3 class="text-base mb-1">Focus Areas</h3>
         <p class="text-sm">RF PCB Design, Wireless Hardware</p>
         <p class="text-xs text-text-muted mt-1">Multi-layer PCB &amp; Power Electronics</p>
       </div>
       <div class="card-glow p-7 reveal">
-        <div class="icon-tile mb-5"><i class="fas fa-robot text-white"></i></div>
+        <div class="icon-tile mb-5" style="background:linear-gradient(135deg,var(--accent-blue),var(--accent-violet));"><i class="fas fa-robot text-white"></i></div>
         <h3 class="text-base mb-1">Currently Learning</h3>
         <p class="text-sm">ROS 2 &amp; Robotics</p>
         <p class="text-xs text-text-muted mt-1">SLAM &amp; Autonomous Navigation Foundations</p>
       </div>
       <div class="card-glow p-7 reveal">
-        <div class="icon-tile mb-5"><i class="fas fa-graduation-cap text-white"></i></div>
+        <div class="icon-tile mb-5" style="background:linear-gradient(135deg,var(--accent-green),var(--accent-cyan));"><i class="fas fa-graduation-cap text-white"></i></div>
         <h3 class="text-base mb-1">Academic Standing</h3>
-        <p class="text-sm text-cyan-400 font-bold">3.99 / 4.00 CGPA</p>
-        <p class="text-xs text-text-muted mt-1">B.S. Electrical Engineering, PIEAS</p>
+        <p class="text-sm t-accent font-bold">3.99 / 4.00 CGPA</p>
+        <p class="text-xs text-text-muted mt-1">B.S. Electrical Engineering, PIEAS · 2nd Year</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============ METRICS ============ -->
-<section class="py-16 px-4 sm:px-6 lg:px-8 border-y border-cyan-900/20">
+<section class="py-16 px-4 sm:px-6 lg:px-8 border-y border-accent-soft">
   <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 text-center">
     <div class="reveal">
       <p class="mono text-2xl md:text-3xl font-bold glow-text">3.99/4.0</p>
@@ -436,18 +519,20 @@ nav a.active-link{color:var(--accent-cyan)!important;}
     <div class="section-head text-center">
       <span class="eyebrow"><span class="dot"></span> 0x02 · EDUCATION_LOG</span>
       <h2><span class="glow-text">Academic</span> Timeline</h2>
+      <div class="underline-trace"></div>
     </div>
 
     <div class="timeline max-w-5xl mx-auto">
       <div class="timeline-item reveal">
         <div class="timeline-content card-glow p-8">
-          <h3 class="text-cyan-400 mb-1">B.S. Electrical Engineering</h3>
+          <h3 class="t-accent mb-1">B.S. Electrical Engineering</h3>
           <p class="font-semibold text-primary-c text-sm mb-4">Pakistan Institute of Engineering and Applied Sciences (PIEAS)</p>
           <div class="flex flex-wrap gap-2 mb-4 mono text-xs text-text-muted">
-            <span><i class="fas fa-calendar text-cyan-400 mr-1"></i>2025 – Present</span>
+            <span><i class="fas fa-calendar t-accent mr-1"></i>2025 – Present</span>
           </div>
           <div class="flex flex-wrap gap-2 mb-4">
             <span class="badge"><i class="fas fa-trophy mr-1"></i>CGPA: 3.99 / 4.00</span>
+            <span class="badge badge-violet"><i class="fas fa-layer-group mr-1"></i>2nd Year</span>
           </div>
           <p class="text-xs text-text-muted mb-2">Focus areas:</p>
           <div class="flex flex-wrap gap-2">
@@ -465,10 +550,10 @@ nav a.active-link{color:var(--accent-cyan)!important;}
 
       <div class="timeline-item reveal">
         <div class="timeline-content card-glow p-8">
-          <h3 class="text-cyan-400 mb-1">FSc Pre-Engineering</h3>
+          <h3 class="t-accent mb-1">FSc Pre-Engineering</h3>
           <p class="font-semibold text-primary-c text-sm mb-4">Federal College of Science and Commerce, Attock</p>
           <div class="flex flex-wrap gap-2 mb-4 mono text-xs text-text-muted">
-            <span><i class="fas fa-calendar text-cyan-400 mr-1"></i>2023 – 2025</span>
+            <span><i class="fas fa-calendar t-accent mr-1"></i>2023 – 2025</span>
           </div>
           <div class="flex flex-wrap gap-2">
             <span class="badge"><i class="fas fa-medal mr-1"></i>1025 / 1100</span>
@@ -481,10 +566,10 @@ nav a.active-link{color:var(--accent-cyan)!important;}
 
       <div class="timeline-item reveal">
         <div class="timeline-content card-glow p-8">
-          <h3 class="text-cyan-400 mb-1">Secondary School Certificate</h3>
+          <h3 class="t-accent mb-1">Secondary School Certificate</h3>
           <p class="font-semibold text-primary-c text-sm mb-4">Federal Government Educational Institutions (FGEI), Wah Region</p>
           <div class="flex flex-wrap gap-2 mb-4 mono text-xs text-text-muted">
-            <span><i class="fas fa-calendar text-cyan-400 mr-1"></i>2021 – 2023</span>
+            <span><i class="fas fa-calendar t-accent mr-1"></i>2021 – 2023</span>
           </div>
           <div class="flex flex-wrap gap-2">
             <span class="badge"><i class="fas fa-medal mr-1"></i>985 / 1100</span>
@@ -503,6 +588,7 @@ nav a.active-link{color:var(--accent-cyan)!important;}
     <div class="section-head text-center">
       <span class="eyebrow"><span class="dot"></span> 0x03 · EXPERIENCE</span>
       <h2>Work &amp; <span class="glow-text">Internships</span></h2>
+      <div class="underline-trace"></div>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -511,7 +597,7 @@ nav a.active-link{color:var(--accent-cyan)!important;}
           <div class="icon-tile"><i class="fas fa-robot text-white"></i></div>
           <div>
             <h3 class="text-primary-c">ROS 2 Intern</h3>
-            <p class="text-cyan-400 text-sm font-semibold">ArboTrix Lab</p>
+            <p class="t-accent text-sm font-semibold">ArboTrix Lab</p>
             <p class="mono text-xs text-text-muted mt-1"><i class="fas fa-calendar mr-1"></i>July 2026 – Present</p>
           </div>
         </div>
@@ -531,10 +617,10 @@ nav a.active-link{color:var(--accent-cyan)!important;}
 
       <div class="card-glow p-8 reveal">
         <div class="flex items-start gap-4 mb-4">
-          <div class="icon-tile"><i class="fas fa-hands-helping text-white"></i></div>
+          <div class="icon-tile" style="background:linear-gradient(135deg,var(--accent-violet),var(--accent-blue));"><i class="fas fa-hands-helping text-white"></i></div>
           <div>
             <h3 class="text-primary-c">Volunteer Intern</h3>
-            <p class="text-cyan-400 text-sm font-semibold">Alkhidmat Foundation</p>
+            <p class="t-accent text-sm font-semibold">Alkhidmat Foundation</p>
           </div>
         </div>
         <p class="text-sm mb-5">Contributed to community-oriented initiatives, event coordination, and volunteer operations.</p>
@@ -550,11 +636,13 @@ nav a.active-link{color:var(--accent-cyan)!important;}
 </section>
 
 <!-- ============ SKILLS ============ -->
-<section id="skills" class="py-24 px-4 sm:px-6 lg:px-8 bg-tertiary-dark/30">
-  <div class="max-w-7xl mx-auto">
+<section id="skills" class="py-24 px-4 sm:px-6 lg:px-8 bg-tertiary-dark/30 relative overflow-hidden">
+  <div class="ambient-blob" style="width:380px;height:380px;top:0%;left:-8%;background:var(--accent-green);"></div>
+  <div class="max-w-7xl mx-auto relative z-10">
     <div class="section-head text-center">
       <span class="eyebrow"><span class="dot"></span> 0x04 · SKILL_MAP</span>
       <h2>Technical <span class="glow-text">Skills</span></h2>
+      <div class="underline-trace"></div>
     </div>
 
     <div id="skillsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
@@ -562,11 +650,13 @@ nav a.active-link{color:var(--accent-cyan)!important;}
 </section>
 
 <!-- ============ PROJECTS ============ -->
-<section id="projects" class="py-24 px-4 sm:px-6 lg:px-8">
-  <div class="max-w-7xl mx-auto">
+<section id="projects" class="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+  <div class="ambient-blob" style="width:420px;height:420px;bottom:-10%;left:50%;background:var(--accent-blue);"></div>
+  <div class="max-w-7xl mx-auto relative z-10">
     <div class="section-head text-center">
       <span class="eyebrow"><span class="dot"></span> 0x05 · PROJECT_ARCHIVE</span>
       <h2>Featured <span class="glow-text">Projects</span></h2>
+      <div class="underline-trace"></div>
       <p class="text-sm text-text-muted mt-4 max-w-2xl mx-auto">Every project ships with a GitHub repository and README — filter by discipline below.</p>
     </div>
 
@@ -583,8 +673,8 @@ nav a.active-link{color:var(--accent-cyan)!important;}
 
 <!-- ============ GITHUB ============ -->
 <section id="github" class="py-20 px-4 sm:px-6 lg:px-8 bg-tertiary-dark/30">
-  <div class="max-w-5xl mx-auto card-glow p-10 reveal text-center" style="border-color:rgba(0,217,255,0.3);">
-    <i class="fab fa-github text-4xl text-cyan-400 mb-4"></i>
+  <div class="max-w-5xl mx-auto card-glow p-10 reveal text-center" style="border-color:rgba(var(--accent-cyan-rgb),0.3);">
+    <i class="fab fa-github text-4xl t-accent mb-4"></i>
     <h3 class="mb-3">Open Source &amp; Hardware Repositories</h3>
     <p class="text-sm mb-6 max-w-xl mx-auto">All PCB designs, firmware, and code for the projects above are version-controlled and public on GitHub.</p>
     <div id="githubStats" class="flex justify-center gap-8 mb-7 mono text-sm text-text-muted"></div>
@@ -595,11 +685,13 @@ nav a.active-link{color:var(--accent-cyan)!important;}
 </section>
 
 <!-- ============ CERTIFICATIONS ============ -->
-<section id="certifications" class="py-24 px-4 sm:px-6 lg:px-8">
-  <div class="max-w-7xl mx-auto">
+<section id="certifications" class="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+  <div class="ambient-blob" style="width:360px;height:360px;top:5%;right:-6%;background:var(--accent-violet);"></div>
+  <div class="max-w-7xl mx-auto relative z-10">
     <div class="section-head text-center">
       <span class="eyebrow"><span class="dot"></span> 0x06 · CERTIFICATIONS</span>
       <h2><span class="glow-text">Certifications</span> &amp; Coursework</h2>
+      <div class="underline-trace"></div>
     </div>
 
     <div id="featuredCert" class="mb-10"></div>
@@ -613,47 +705,48 @@ nav a.active-link{color:var(--accent-cyan)!important;}
     <div class="section-head text-center">
       <span class="eyebrow"><span class="dot"></span> 0x07 · LEADERSHIP</span>
       <h2>Leadership &amp; <span class="glow-text">Campus Activities</span></h2>
+      <div class="underline-trace"></div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
       <div class="card-glow p-7 reveal">
         <div class="icon-tile mb-4"><i class="fas fa-id-badge text-white"></i></div>
         <h3 class="text-base text-primary-c mb-1">Campus Ambassador</h3>
-        <p class="text-sm text-cyan-400">National Youth Leadership Program (NYLP)</p>
+        <p class="text-sm t-accent">National Youth Leadership Program (NYLP)</p>
       </div>
       <div class="card-glow p-7 reveal">
-        <div class="icon-tile mb-4"><i class="fas fa-id-badge text-white"></i></div>
+        <div class="icon-tile mb-4" style="background:linear-gradient(135deg,var(--accent-violet),var(--accent-cyan));"><i class="fas fa-id-badge text-white"></i></div>
         <h3 class="text-base text-primary-c mb-1">Campus Ambassador</h3>
-        <p class="text-sm text-cyan-400">The Leap Pakistan</p>
+        <p class="text-sm t-accent">The Leap Pakistan</p>
       </div>
       <div class="card-glow p-7 reveal">
-        <div class="icon-tile mb-4"><i class="fas fa-id-badge text-white"></i></div>
+        <div class="icon-tile mb-4" style="background:linear-gradient(135deg,var(--accent-blue),var(--accent-violet));"><i class="fas fa-id-badge text-white"></i></div>
         <h3 class="text-base text-primary-c mb-1">Campus Ambassador</h3>
-        <p class="text-sm text-cyan-400">Paragon Study Abroad Expo</p>
+        <p class="text-sm t-accent">Paragon Study Abroad Expo</p>
       </div>
       <div class="card-glow p-7 reveal">
-        <div class="icon-tile mb-4"><i class="fas fa-id-badge text-white"></i></div>
+        <div class="icon-tile mb-4" style="background:linear-gradient(135deg,var(--accent-green),var(--accent-cyan));"><i class="fas fa-id-badge text-white"></i></div>
         <h3 class="text-base text-primary-c mb-1">Campus Ambassador</h3>
-        <p class="text-sm text-cyan-400">Skillistan</p>
+        <p class="text-sm t-accent">Skillistan</p>
       </div>
       <div class="card-glow p-7 reveal">
         <div class="icon-tile mb-4"><i class="fas fa-users-cog text-white"></i></div>
         <h3 class="text-base text-primary-c mb-1">Management Team</h3>
-        <p class="text-sm text-cyan-400">IEEE PIEAS Student Branch</p>
+        <p class="text-sm t-accent">IEEE PIEAS Student Branch</p>
       </div>
       <div class="card-glow p-7 reveal">
-        <div class="icon-tile mb-4"><i class="fas fa-users-cog text-white"></i></div>
+        <div class="icon-tile mb-4" style="background:linear-gradient(135deg,var(--accent-violet),var(--accent-blue));"><i class="fas fa-users-cog text-white"></i></div>
         <h3 class="text-base text-primary-c mb-1">Management Team</h3>
-        <p class="text-sm text-cyan-400">PIEAS Open House</p>
+        <p class="text-sm t-accent">PIEAS Open House</p>
       </div>
       <div class="card-glow p-7 reveal">
-        <div class="icon-tile mb-4"><i class="fas fa-users-cog text-white"></i></div>
+        <div class="icon-tile mb-4" style="background:linear-gradient(135deg,var(--accent-blue),var(--accent-cyan));"><i class="fas fa-users-cog text-white"></i></div>
         <h3 class="text-base text-primary-c mb-1">Management Team</h3>
-        <p class="text-sm text-cyan-400">InnovateX PIEAS</p>
+        <p class="text-sm t-accent">InnovateX PIEAS</p>
       </div>
     </div>
 
-    <div class="card-glow p-9 reveal" style="border-color:rgba(0,230,168,0.35);">
+    <div class="card-glow p-9 reveal" style="border-color:rgba(var(--accent-green-rgb),0.35);">
       <div class="flex flex-col md:flex-row items-start gap-6">
         <div class="icon-tile" style="background:linear-gradient(135deg,var(--accent-green),var(--accent-cyan));"><i class="fas fa-trophy text-white"></i></div>
         <div>
@@ -679,12 +772,12 @@ nav a.active-link{color:var(--accent-cyan)!important;}
     <h2 class="mt-4 mb-10">Languages</h2>
     <div class="grid grid-cols-2 gap-6">
       <div class="card-glow p-7 reveal">
-        <i class="fas fa-comment-dots text-2xl text-cyan-400 mb-3"></i>
+        <i class="fas fa-comment-dots text-2xl t-accent mb-3"></i>
         <h3 class="text-base text-primary-c mb-1">English</h3>
         <p class="text-xs text-text-muted uppercase tracking-wide mono">Professional</p>
       </div>
       <div class="card-glow p-7 reveal">
-        <i class="fas fa-comment-dots text-2xl text-cyan-400 mb-3"></i>
+        <i class="fas fa-comment-dots text-2xl t-accent-2 mb-3"></i>
         <h3 class="text-base text-primary-c mb-1">Urdu</h3>
         <p class="text-xs text-text-muted uppercase tracking-wide mono">Native</p>
       </div>
@@ -698,6 +791,7 @@ nav a.active-link{color:var(--accent-cyan)!important;}
     <div class="section-head text-center">
       <span class="eyebrow"><span class="dot"></span> 0x09 · CONTACT</span>
       <h2>Let's Build Something <span class="glow-text">That Matters</span></h2>
+      <div class="underline-trace"></div>
       <p class="text-sm text-text-muted mt-4 max-w-xl mx-auto">Open to internships and collaboration in PCB design, RF hardware, embedded systems, robotics, and open-source hardware.</p>
     </div>
 
@@ -707,25 +801,25 @@ nav a.active-link{color:var(--accent-cyan)!important;}
           <div class="icon-tile"><i class="fas fa-envelope text-white"></i></div>
           <div>
             <h3 class="text-base text-primary-c mb-1">Email</h3>
-            <a href="mailto:arhamsufyan5@gmail.com" class="text-sm hover:text-cyan-400 transition">arhamsufyan5@gmail.com</a>
+            <a href="mailto:arhamsufyan5@gmail.com" class="text-sm t-accent-hover transition">arhamsufyan5@gmail.com</a>
           </div>
         </div>
         <div class="card-glow p-7 flex items-start gap-5">
-          <div class="icon-tile"><i class="fas fa-phone text-white"></i></div>
+          <div class="icon-tile" style="background:linear-gradient(135deg,var(--accent-violet),var(--accent-cyan));"><i class="fas fa-phone text-white"></i></div>
           <div>
             <h3 class="text-base text-primary-c mb-1">Phone</h3>
-            <a href="tel:+923295863683" class="text-sm hover:text-cyan-400 transition">+92 329 5863683</a>
+            <a href="tel:+923295863683" class="text-sm t-accent-hover transition">+92 329 5863683</a>
           </div>
         </div>
         <div class="card-glow p-7 flex items-start gap-5">
-          <div class="icon-tile"><i class="fas fa-map-pin text-white"></i></div>
+          <div class="icon-tile" style="background:linear-gradient(135deg,var(--accent-blue),var(--accent-violet));"><i class="fas fa-map-pin text-white"></i></div>
           <div>
             <h3 class="text-base text-primary-c mb-1">Location</h3>
             <p class="text-sm">Islamabad, Pakistan</p>
             <p class="text-xs text-text-muted">Hometown: Attock, Punjab</p>
           </div>
         </div>
-        <div class="rounded-2xl overflow-hidden border border-cyan-900/30" style="height:220px;">
+        <div class="rounded-2xl overflow-hidden border border-accent-soft" style="height:220px;">
           <iframe title="Islamabad, Pakistan map" src="https://www.google.com/maps?q=Islamabad,Pakistan&output=embed" width="100%" height="100%" style="border:0;filter:grayscale(0.3) invert(0.9) contrast(0.9);" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
@@ -757,35 +851,35 @@ nav a.active-link{color:var(--accent-cyan)!important;}
 </section>
 
 <!-- ============ FOOTER ============ -->
-<footer class="border-t border-cyan-900/30 py-14 px-4 sm:px-6 lg:px-8">
+<footer class="border-t border-accent-soft py-14 px-4 sm:px-6 lg:px-8">
   <div class="max-w-7xl mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
       <div class="md:col-span-2">
         <div class="flex items-center gap-3 mb-4">
-          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-400 to-violet-500 flex items-center justify-center"><i class="fas fa-microchip text-white text-sm"></i></div>
+          <div class="w-9 h-9 rounded-lg grad-accent flex items-center justify-center"><i class="fas fa-microchip text-white text-sm"></i></div>
           <span class="font-bold text-primary-c" style="font-family:'Syne',sans-serif;">Muhammad Sufyan</span>
         </div>
-        <p class="text-sm max-w-sm">Electrical Engineering student building real hardware — PCBs, RF systems, embedded firmware, and robotics.</p>
+        <p class="text-sm max-w-sm">2nd-year Electrical Engineering student building real hardware — PCBs, RF systems, embedded firmware, and robotics.</p>
       </div>
       <div>
-        <h4 class="font-bold mb-4 text-cyan-400 text-sm uppercase tracking-wide">Navigate</h4>
+        <h4 class="font-bold mb-4 t-accent text-sm uppercase tracking-wide">Navigate</h4>
         <div class="space-y-2 text-sm">
-          <a href="#about" class="block hover:text-cyan-400 transition">About</a>
-          <a href="#projects" class="block hover:text-cyan-400 transition">Projects</a>
-          <a href="#certifications" class="block hover:text-cyan-400 transition">Certifications</a>
-          <a href="#contact" class="block hover:text-cyan-400 transition">Contact</a>
+          <a href="#about" class="block t-accent-hover transition">About</a>
+          <a href="#projects" class="block t-accent-hover transition">Projects</a>
+          <a href="#certifications" class="block t-accent-hover transition">Certifications</a>
+          <a href="#contact" class="block t-accent-hover transition">Contact</a>
         </div>
       </div>
       <div>
-        <h4 class="font-bold mb-4 text-cyan-400 text-sm uppercase tracking-wide">Connect</h4>
+        <h4 class="font-bold mb-4 t-accent text-sm uppercase tracking-wide">Connect</h4>
         <div class="flex gap-3">
-          <a href="https://www.linkedin.com/in/muhammad-sufyan-6214752b8" target="_blank" rel="noopener" aria-label="LinkedIn" class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:border-cyan-400 transition text-cyan-400"><i class="fab fa-linkedin"></i></a>
-          <a href="https://github.com/sufyan933" target="_blank" rel="noopener" aria-label="GitHub" class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:border-cyan-400 transition text-cyan-400"><i class="fab fa-github"></i></a>
-          <a href="mailto:arhamsufyan5@gmail.com" aria-label="Email" class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:border-cyan-400 transition text-cyan-400"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.linkedin.com/in/muhammad-sufyan-6214752b8" target="_blank" rel="noopener" aria-label="LinkedIn" class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:border-accent-soft transition t-accent"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/sufyan933" target="_blank" rel="noopener" aria-label="GitHub" class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:border-accent-soft transition t-accent"><i class="fab fa-github"></i></a>
+          <a href="mailto:arhamsufyan5@gmail.com" aria-label="Email" class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:border-accent-soft transition t-accent"><i class="fas fa-envelope"></i></a>
         </div>
       </div>
     </div>
-    <div class="border-t border-cyan-900/30 pt-7 text-center text-xs text-text-muted mono">
+    <div class="border-t border-accent-soft pt-7 text-center text-xs text-text-muted mono">
       <p>&copy; 2026 Muhammad Sufyan. All rights reserved.</p>
       <p class="mt-2">BUILD → TEST → DEBUG → IMPROVE</p>
     </div>
@@ -921,19 +1015,35 @@ const certData = [
   { title:"AI Visibility Toolkit Crash Course", issuer:"Semrush", category:"Business & AI", driveUrl:"https://drive.google.com/drive/folders/1KbxiBZScBl1wezA8ksYgpGUUh3pX3S5L" }
 ];
 
+const themes = [
+  { key:"circuit",  name:"Circuit Cyan",   c1:"#00d9ff", c2:"#8b6bff" },
+  { key:"phosphor", name:"Phosphor Green", c1:"#39ff88", c2:"#ffd23f" },
+  { key:"solder",   name:"Solder Copper",  c1:"#ff9d42", c2:"#ff5f6d" },
+  { key:"spectrum", name:"RF Spectrum",    c1:"#c084fc", c2:"#f472b6" },
+  { key:"power",    name:"Power Red",      c1:"#ff4d6d", c2:"#ffd23f" }
+];
+
 /* ============================================================
    RENDERERS
    ============================================================ */
 function isRealUrl(u){ return typeof u === "string" && /^https?:\/\//.test(u); }
 
-// -- Skills --
+// -- Skills (color-cycled icon tiles for a "map" feel) --
 const skillsGrid = document.getElementById('skillsGrid');
+const skillGradients = [
+  'linear-gradient(135deg,var(--accent-cyan),var(--accent-blue))',
+  'linear-gradient(135deg,var(--accent-violet),var(--accent-cyan))',
+  'linear-gradient(135deg,var(--accent-blue),var(--accent-violet))',
+  'linear-gradient(135deg,var(--accent-green),var(--accent-cyan))',
+  'linear-gradient(135deg,var(--accent-cyan),var(--accent-violet))',
+  'linear-gradient(135deg,var(--accent-violet),var(--accent-blue))'
+];
 skillGroups.forEach((g,i)=>{
   const el = document.createElement('div');
   el.className = 'card-glow p-7 reveal';
   el.innerHTML = `
     <div class="flex items-center gap-3 mb-5">
-      <div class="icon-tile" style="width:44px;height:44px;"><i class="fas ${g.icon} text-white text-sm"></i></div>
+      <div class="icon-tile" style="width:44px;height:44px;background:${skillGradients[i % skillGradients.length]};"><i class="fas ${g.icon} text-white text-sm"></i></div>
       <h3 class="text-base text-primary-c">${g.title}</h3>
     </div>
     <div class="flex flex-wrap gap-2">${g.skills.map(s=>`<span class="badge">${s}</span>`).join('')}</div>`;
@@ -965,10 +1075,11 @@ function renderProjects(filterKey){
     const icon = projectIcons[p.icon] || p.icon;
     const card = document.createElement('div');
     card.className = 'card-glow overflow-hidden reveal is-visible group' + (p.featured ? '' : '');
-    card.style.borderColor = p.featured ? 'rgba(0,217,255,0.35)' : '';
+    card.style.borderColor = p.featured ? 'rgba(var(--accent-cyan-rgb),0.35)' : '';
     card.innerHTML = `
+      <div class="trace-strip"></div>
       <div class="h-40 bg-gradient-to-br from-blue-950 to-violet-950/60 flex items-center justify-center relative overflow-hidden">
-        <i class="fas ${icon} text-5xl text-cyan-400/25 group-hover:scale-110 group-hover:text-cyan-400/40 transition duration-500"></i>
+        <i class="fas ${icon} text-5xl icon-faint transition duration-500"></i>
         ${p.featured ? '<span class="absolute top-3 right-3 badge badge-green" style="margin:0;">Featured</span>' : ''}
       </div>
       <div class="p-7">
@@ -976,7 +1087,7 @@ function renderProjects(filterKey){
         <p class="text-sm mb-4">${p.description}</p>
         <div class="flex flex-wrap gap-2 mb-4">${p.tech.map(t=>`<span class="badge text-xs">${t}</span>`).join('')}</div>
         <ul class="text-xs space-y-1 mb-5 text-text-muted">
-          ${p.features.slice(0,4).map(f=>`<li><i class="fas fa-check text-cyan-400 mr-2"></i>${f}</li>`).join('')}
+          ${p.features.slice(0,4).map(f=>`<li><i class="fas fa-check t-accent mr-2"></i>${f}</li>`).join('')}
         </ul>
         <div class="flex flex-wrap gap-2">
           <a href="${p.repo}" target="_blank" rel="noopener" class="btn-ghost inline-flex items-center gap-1"><i class="fab fa-github"></i> Repository</a>
@@ -1005,13 +1116,13 @@ certData.forEach(c=>{
   const btn = `<a href="${real ? c.driveUrl : '#'}" ${real ? 'target="_blank" rel="noopener"' : ''} class="cert-btn btn-ghost inline-flex items-center gap-2 mt-4" data-disabled="${!real}" ${!real ? 'onclick="event.preventDefault()" title="Certificate link coming soon"' : ''}><i class="fas fa-certificate"></i> View Certificate</a>`;
   if(c.featured){
     featuredCertEl.innerHTML = `
-      <div class="card-glow p-9 reveal" style="border-color:rgba(0,217,255,0.4);background:linear-gradient(135deg,rgba(0,217,255,0.06),rgba(139,107,255,0.06));">
+      <div class="card-glow p-9 reveal" style="border-color:rgba(var(--accent-cyan-rgb),0.4);background:linear-gradient(135deg,rgba(var(--accent-cyan-rgb),0.06),rgba(var(--accent-violet-rgb),0.06));">
         <div class="flex flex-col md:flex-row items-start gap-6">
           <div class="icon-tile" style="width:60px;height:60px;"><i class="fas fa-award text-white text-xl"></i></div>
           <div>
             <span class="badge badge-green mb-2">Featured Certification</span>
             <h3 class="text-primary-c mb-1">${c.title}</h3>
-            <p class="text-sm text-cyan-400 font-semibold mb-2">${c.issuer} · ${c.category}</p>
+            <p class="text-sm t-accent font-semibold mb-2">${c.issuer} · ${c.category}</p>
             <p class="text-sm text-text-muted">${c.note}</p>
             ${btn}
           </div>
@@ -1022,7 +1133,7 @@ certData.forEach(c=>{
   const el = document.createElement('div');
   el.className = 'card-glow p-7 reveal';
   el.innerHTML = `
-    <i class="fas fa-award text-xl text-cyan-400 mb-3"></i>
+    <i class="fas fa-award text-xl t-accent mb-3"></i>
     <h3 class="text-sm text-primary-c mb-1">${c.title}</h3>
     <p class="text-xs text-text-muted mb-1">${c.issuer}</p>
     <span class="badge text-xs" style="margin-top:4px;">${c.category}</span>
@@ -1033,16 +1144,56 @@ certData.forEach(c=>{
 /* ============================================================
    INTERACTIONS
    ============================================================ */
-// Theme toggle
+// Theme (light/dark) toggle
 const themeToggle = document.getElementById('themeToggle');
 const body = document.body;
-const savedTheme = localStorage.getItem('theme') || 'dark';
-if(savedTheme==='light'){ body.classList.add('light-mode'); themeToggle.innerHTML='<i class="fas fa-sun"></i>'; }
+const savedMode = localStorage.getItem('theme') || 'dark';
+if(savedMode==='light'){ body.classList.add('light-mode'); themeToggle.innerHTML='<i class="fas fa-sun"></i>'; }
 themeToggle.addEventListener('click', ()=>{
   body.classList.toggle('light-mode');
   const light = body.classList.contains('light-mode');
   localStorage.setItem('theme', light?'light':'dark');
   themeToggle.innerHTML = light ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+});
+
+// Color-theme (palette) picker
+const themeSwatches = document.getElementById('themeSwatches');
+const themeNameLabel = document.getElementById('themeNameLabel');
+const themePickerBtn = document.getElementById('themePickerBtn');
+const themePickerMenu = document.getElementById('themePickerMenu');
+const savedColorTheme = localStorage.getItem('theme-color') || 'circuit';
+function applyColorTheme(key){
+  if(key === 'circuit'){ body.removeAttribute('data-theme'); } else { body.setAttribute('data-theme', key); }
+  const t = themes.find(x=>x.key===key) || themes[0];
+  themeNameLabel.textContent = t.name;
+  document.querySelectorAll('.theme-swatch').forEach(sw=> sw.classList.toggle('active-swatch', sw.dataset.key===key));
+  localStorage.setItem('theme-color', key);
+}
+themes.forEach(t=>{
+  const sw = document.createElement('button');
+  sw.className = 'theme-swatch';
+  sw.style.background = `linear-gradient(135deg, ${t.c1}, ${t.c2})`;
+  sw.dataset.key = t.key;
+  sw.setAttribute('aria-label', t.name);
+  sw.title = t.name;
+  sw.addEventListener('click', ()=> applyColorTheme(t.key));
+  themeSwatches.appendChild(sw);
+});
+applyColorTheme(savedColorTheme);
+
+themePickerBtn.addEventListener('click', (e)=>{
+  e.stopPropagation();
+  const open = themePickerMenu.classList.toggle('hidden') === false;
+  themePickerBtn.setAttribute('aria-expanded', String(open));
+});
+document.addEventListener('click', (e)=>{
+  if(!themePickerMenu.classList.contains('hidden') && !themePickerMenu.contains(e.target) && e.target!==themePickerBtn){
+    themePickerMenu.classList.add('hidden');
+    themePickerBtn.setAttribute('aria-expanded','false');
+  }
+});
+document.addEventListener('keydown', (e)=>{
+  if(e.key==='Escape'){ themePickerMenu.classList.add('hidden'); themePickerBtn.setAttribute('aria-expanded','false'); }
 });
 
 // Mobile menu
@@ -1064,7 +1215,7 @@ document.querySelectorAll('a[href="M.SUFYAN_RESUME.pdf"]').forEach(a=> a.href = 
 
 // Typewriter
 const phrases = [
-  "Electrical Engineering Student at PIEAS",
+  "2nd-Year EE Student · PIEAS",
   "PCB Designer",
   "Embedded Systems Developer",
   "RF & Wireless Hardware Enthusiast",
@@ -1121,10 +1272,10 @@ contactForm.addEventListener('submit', async (e)=>{
     if(!res.ok) throw new Error('rate limited');
     const data = await res.json();
     el.innerHTML = `
-      <div><span class="text-cyan-400 font-bold text-lg">${data.public_repos ?? '—'}</span><br>Public Repos</div>
-      <div><span class="text-cyan-400 font-bold text-lg">${data.followers ?? '—'}</span><br>Followers</div>`;
+      <div><span class="t-accent font-bold text-lg">${data.public_repos ?? '—'}</span><br>Public Repos</div>
+      <div><span class="t-accent font-bold text-lg">${data.followers ?? '—'}</span><br>Followers</div>`;
   }catch(err){
-    el.innerHTML = `<span class="text-text-muted">Live stats unavailable right now — <a href="https://github.com/sufyan933" target="_blank" rel="noopener" class="text-cyan-400 underline">view profile directly</a>.</span>`;
+    el.innerHTML = `<span class="text-text-muted">Live stats unavailable right now — <a href="https://github.com/sufyan933" target="_blank" rel="noopener" class="t-accent underline">view profile directly</a>.</span>`;
   }
 })();
 
@@ -1136,17 +1287,22 @@ const observer = new IntersectionObserver((entries)=>{
 }, { threshold:0.12, rootMargin:'0px 0px -80px 0px' });
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
-// Navbar shadow + active link on scroll
+// Navbar shadow + active link + scroll progress
 const navEl = document.querySelector('nav');
 const navLinks = document.querySelectorAll('.nav-link');
 const sections = document.querySelectorAll('section[id]');
+const scrollProgressEl = document.getElementById('scrollProgress');
 window.addEventListener('scroll', ()=>{
-  navEl.style.boxShadow = window.pageYOffset>50 ? '0 10px 30px rgba(0,217,255,0.1)' : 'none';
+  navEl.style.boxShadow = window.pageYOffset>50 ? '0 10px 30px rgba(var(--accent-cyan-rgb),0.1)' : 'none';
   let current='';
   sections.forEach(s=>{ if(pageYOffset >= s.offsetTop - 200) current = s.getAttribute('id'); });
   navLinks.forEach(l=>{
     l.classList.toggle('active-link', l.getAttribute('href') === `#${current}`);
   });
+  const docEl = document.documentElement;
+  const scrollable = docEl.scrollHeight - docEl.clientHeight;
+  const pct = scrollable > 0 ? (docEl.scrollTop / scrollable) * 100 : 0;
+  scrollProgressEl.style.width = pct + '%';
 });
 </script>
 </body>
